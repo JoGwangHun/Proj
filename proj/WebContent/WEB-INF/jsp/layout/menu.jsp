@@ -9,6 +9,6 @@
     <a class="py-2 d-none d-md-inline-block" href="thingList.do">상품리스트</a>
     <a class="py-2 d-none d-md-inline-block" href="#">장바구니</a>
     <a class="py-2 d-none d-md-inline-block" href="memberLogin.do">로그인</a>
-    <a class="py-2 d-none d-md-inline-block" href="memberJoin.do">회원가입</a>
+    <a class="py-2 d-none d-md-inline-block" href="memberJoinForm.do">회원가입</a>
   </nav>
 </header>

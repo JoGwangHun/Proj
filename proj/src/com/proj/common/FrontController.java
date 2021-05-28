@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.proj.member.memberJoin;
+import com.proj.member.memberJoinForm;
 import com.proj.thing.web.ThingList;
 
 public class FrontController  extends HttpServlet {
@@ -20,6 +21,7 @@ public class FrontController  extends HttpServlet {
 	@Override
 	public void init(ServletConfig config) throws ServletException {
 		map.put("/index.do", new indexPage());
+		map.put("/memberJoinForm.do", new memberJoinForm());
 		map.put("/memberJoin.do", new memberJoin());
 		map.put("/thingList.do", new ThingList());
 	}
