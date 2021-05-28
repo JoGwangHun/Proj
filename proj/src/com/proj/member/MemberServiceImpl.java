@@ -12,7 +12,30 @@ public class MemberServiceImpl extends DAO implements MemberService{
 	PreparedStatement psmt;
 	ResultSet rs;
 	String sql;
-		
+	
+	//id를 중복 인지 체크 해주는 메소드 / 중복존재하면 true/아니면 false
+		public boolean idCheck(String id) {
+			
+			boolean exist=false;
+			String sql = "select member_id from member where member_id=?";
+			try {
+				psmt=conn.prepareStatement(sql);
+				psmt.setString(1, id);
+				rs=psmt.executeQuery();
+				if(rs.next()) {
+					exist=true;
+				}
+			} catch (SQLException e) {
+				
+				e.printStackTrace();
+			}finally {
+				close();
+			}
+			return exist;
+		}
+	
+	
+	
 	@Override
 	public List<MemberVO> selectMemberList() {
 		

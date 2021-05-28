@@ -24,20 +24,21 @@ public class memberJoin implements DbCommand {
 			String tel= request.getParameter("tel");
 			System.out.println(tel);
 			
-//			MemberVO vo= new MemberVO();
-//			vo.setMemberId(id);
-//			vo.setMemberPwd(pwd);
-//			vo.setMemberName(name);
-//			vo.setMemberEmail(email);
-//			vo.setMemberTel(tel);
-//			
-//			MemberService service = new MemberServiceImpl();
-//			service.insertMember(vo);
-//			
+			MemberVO vo= new MemberVO();
+			vo.setMemberId(id);
+			vo.setMemberPwd(pwd);
+			vo.setMemberName(name);
+			vo.setMemberEmail(email);
+			vo.setMemberTel(tel);
 			
-	
+			MemberService service = new MemberServiceImpl();
+			service.insertMember(vo);
+			
+			request.setAttribute("vo", vo);
+			
+			
 		
-		return "/main/main.tiles";
+		return "/member/memberLogin.tiles";
 	}
 
 }

@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.proj.member.memberJoin;
 import com.proj.member.memberJoinForm;
+import com.proj.member.memberLogin;
 import com.proj.thing.web.ThingList;
 
 public class FrontController  extends HttpServlet {
@@ -24,6 +25,7 @@ public class FrontController  extends HttpServlet {
 		map.put("/memberJoinForm.do", new memberJoinForm());
 		map.put("/memberJoin.do", new memberJoin());
 		map.put("/thingList.do", new ThingList());
+		map.put("/memberLogin.do", new memberLogin());
 	}
 	
 	@Override

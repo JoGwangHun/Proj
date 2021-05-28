@@ -28,11 +28,11 @@
 			frm.id.focus();
 			return false;
 		}
-		//if(frm.idDuplication.value !="idCheck"){
-		//	alert("아아디 중복체크를 하세요");
-		//	return false;
-		//}
-		/*if(!frm.pwd.value){
+	/*	if(frm.idDuplication.value !="idCheck"){
+			alert("아아디 중복체크를 하세요");
+			return false;
+		}*/
+		if(!frm.pwd.value){
 			alert("비밀번호를 입력하세요");
 			frm.pwd.focus();
 			return false;
@@ -48,18 +48,50 @@
 			alert("이메일을 입력하세요");
 			frm.email.focus();
 			return false;
-		}*/
+		}
 		
-		if(frm.tel1.value && frm.tel2.value && frm.tel3.value){
-			alert(frm.tel1.value+frm.tel2.value+frm.tel3.value);
-			//alert("전화번호를 입력하세요");
-			frm.name.focus();
+		if(!frm.tel.value){
+			alert("전화번호를 입력하세요");
+			frm.tel.focus();
 			return false;
 		}
 		
 		frm.submit();
 	}
   
+  
+
+	$(function(){
+		$('#idCheck').click(function(){
+				if($('#id').val()==""){
+					alert('아이디를 입력하세요');
+					$('#id').focus();
+					return;
+				}
+					
+			$.ajax({
+				url:'ajaxMemberIdCheck',
+				data:{id:$('#id').val()},
+				type: 'post',
+				success: function(data){
+					console.log(data);
+					if(data > 0 ){
+						alert('아이디가 존재합니다. 다른 아이디 입력!');
+						$('#id').val("");
+						$('#id').focus();
+						
+					}else{
+						alert('사용 가능한 아이디 입니다.!');
+						$('#idCheck').val('checked');
+						$('#pwd').focus();
+					}
+				},
+				error:function(err){
+					console.log(err);
+				}
+			});
+		});
+	});
 
   </script>
         
@@ -71,22 +103,18 @@
         	<form id="frm" name="frm" action="memberJoin.do" method="post" >
             <ul>
                 <li><span >아이디 </span><br><input id="id" name="id" type = "text" placeholder = "아이디를 입력하세요" class = 'box'/>
-                	<input class="CheckButton" type="button" id="idCheck" value="중복체크" onclick="openIdChk()">
-                	<input type="hidden" name="idDuplication" value="idUnCheck">
+                	<input class="CheckButton" type="button" id="idCheck" value="Check" >
+                	<input type="hidden" name="unCheck" value="unCheck">
                 </li>
                 <li><span >패스워드 </span><br><input type = "password"  name="pwd" id="pwd" placeholder = "패스워드를 입력하세요" class = 'box'/>
-                    <br><span class = 'necessary' >필수 정보입니다.</span></li>
-                     <li><span >패스워드 확인 </span><br><input type = "password" placeholder = "다시 패스워드를 입력하세요" class = 'box' />
                     <br><span class = 'necessary' >필수 정보입니다.</span></li>
                 <li><span >이름</span><br><input type = "text" placeholder = "이름을 입력하세요." id="name" name="name" class = 'box'/><br>
                     <br><span class = 'necessary' >이메일</span><br> 
                      <input type = "text" class = 'ebox' id="email" name="email"/></li>
-                <li><span >전화번호</span><br> <input type = "text" class = 'pbox' id="tel1" name="tel">-
-                 <input type = "text" class = 'pbox' id="tel2" name="tel2">-
-                  <input type = "text" class = 'pbox' id="tel3" name="tel3">
+                <li><span >전화번호</span><br> <input type = "text" class = 'pbox' id="tel" name="tel">
                     <br><span class = 'necessary' >필수 정보입니다.</span></li>
 
-                <li><button class="JoinButton" type="button" onclick="formCheck()">회원가입</button></li>             
+                <li><button class="JoinButton" type="button" onclick="formCheck()">JOIN</button></li>             
         </ul>
         </form>
         </div>
