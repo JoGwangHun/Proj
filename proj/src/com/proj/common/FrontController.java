@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.proj.member.memberJoin;
+
 public class FrontController  extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private HashMap<String, DbCommand> map = new HashMap<>();
@@ -17,6 +19,7 @@ public class FrontController  extends HttpServlet {
 	@Override
 	public void init(ServletConfig config) throws ServletException {
 		map.put("/index.do", new indexPage());
+		map.put("/memberJoin.do", new memberJoin());
 	}
 	
 	@Override
