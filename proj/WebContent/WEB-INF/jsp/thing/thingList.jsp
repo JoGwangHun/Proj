@@ -1,11 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <style>
-	strong {
-		text-transform: uppercase;
-	}
+strong {
+	text-transform: uppercase;
+}
+
+.price {
+	color: blue;
+	font-size: 20px;
+	line-height: 25px;
+}
+.row>* {
+	max-height: 350px;
+}
 </style>
 <div class="row mb-2">
 	<div class="col-md-6">
@@ -36,18 +45,20 @@
 				class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
 				<div class="col p-4 d-flex flex-column position-static">
 					<strong class="d-inline-block mb-2 text-success">${list.thingKind }</strong>
-					<h3 class="mb-0">${list.thingName }</h3>
-					<div class="mb-1 text-muted">${list.thingEnDate }</div>
-					<p class="mb-auto">${list.thingDesc }</p>
-					<a href="#" class="stretched-link">Continue reading</a>
+					<h3 class="mb-0" style="font-size: 15pt;"><b>${list.thingName }</b></h3>
+					<div class="mb-1 text-muted" style="font-size: 10pt;">등록일 ${list.thingEnDate }</div>
+					<p class="mb-auto" style="font-size: 11pt;">${list.thingDesc }</p>
+					<span class="price"><strong><fmt:formatNumber type="currency"
+							value="${list.thingPrice }"></fmt:formatNumber></strong>
+					</span> <a href="thingSelect.do" class="stretched-link">Continue reading</a>
 				</div>
 				<div class="col-auto d-none d-lg-block">
 					<img class="bd-placeholder-img" width="250" height="250"
 						src="upload/${list.thingImage }" role="img"
 						aria-label="Placeholder: Thumbnail"
 						preserveAspectRatio="xMidYMid slice" focusable="false">
-					<title>Placeholder</title><rect width="100%" height="100%"
-							fill="#55595c" />
+					<title>Placeholder</title>
+					<rect width="100%" height="100%" fill="#55595c" />
 					</svg>
 				</div>
 			</div>

@@ -17,7 +17,7 @@ public class ThingServiceImpl extends DAO implements ThingService {
 
 	@Override
 	public List<ThingVO> thingGetList() {
-		sql = "SELECT * FROM thing ORDER BY 1";
+		sql = "SELECT * FROM thing ORDER BY 7";
 		List<ThingVO> list = new ArrayList<ThingVO>();
 
 		try {

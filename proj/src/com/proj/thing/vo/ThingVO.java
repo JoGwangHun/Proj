@@ -49,7 +49,7 @@ public class ThingVO {
 	}
 
 	public void setThingEnDate(Date thingEnDate) {
-		SimpleDateFormat formatType = new SimpleDateFormat("yy-MM-dd");
+		SimpleDateFormat formatType = new SimpleDateFormat("yy.MM.dd");
 		
 		this.thingEnDate = formatType.format(thingEnDate);
 	}
