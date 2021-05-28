@@ -32,8 +32,8 @@
 	<tiles:insertAttribute name="menu">
 	</tiles:insertAttribute>
 
-	<tiles:insertAttribute name="head">
-	</tiles:insertAttribute>
+<%-- 	<tiles:insertAttribute name="head">
+	</tiles:insertAttribute> --%>
 
 	<tiles:insertAttribute name="body">
 	</tiles:insertAttribute>
