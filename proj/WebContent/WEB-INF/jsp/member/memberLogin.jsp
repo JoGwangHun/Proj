@@ -92,27 +92,46 @@ body {
 .bottomText {
   text-align: center;
 }
+
+.body1{
+	background-color:gray;
+}
   </style>
+  <script>
+  	function Sign(){
+  		alert("가입화면으로 이동!");
+  	}
+  	
+  	function formCheck(){
+		if(frm.LoginId.value ==""){
+			alert("아이디를 입력하세요!");
+			frm.LoginId.focus();
+			return false;
+		}
+		if(frm.LoginPwd.value ==""){
+			alert("비밀번호를 입력하세요!");
+			frm.LoginPwd.focus();
+			return false;
+		}
+		frm.submit();
+	}
+  	
+  </script>
   </head>
-  <body width="100%" height="100%">
-    <form action="index.html" method="post" class="loginForm">
+  <body width="100%" height="100%" class="body1">
+    <form id="frm" action="memberLoginCheck.do" method="post" class="loginForm">
       <h2>Login</h2>
       <div class="idForm">
-        <input type="text" class="id" placeholder="ID">
+        <input type="text" id="LoginId" name="LoginId" class="id" placeholder="ID">
       </div>
       <div class="passForm">
-        <input type="password" class="pw" placeholder="PW">
+        <input type="password" id="LoginPwd" name="LoginPwd"  class="pw" placeholder="PW">
       </div>
-      <button type="button" class="btn" onclick="button()">
-        LOG IN
+      <button type="button" class="btn" onclick="formCheck()">
+        L O G I N
       </button>
-      <script>
-      	let button = () => {
-        	alert('login Button !')
-        }
-      </script>
       <div class="bottomText">
-        Don't you have ID? <a href="#">sign up</a>
+        Don't you have ID? <a href="memberJoinForm.do" onclick="Sign()">sign up</a>
       </div>
     </form>
   </body>

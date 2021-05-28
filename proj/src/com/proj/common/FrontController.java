@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.proj.member.memberJoin;
 import com.proj.member.memberJoinForm;
 import com.proj.member.memberLogin;
+import com.proj.member.memberLoginCheck;
 import com.proj.thing.web.ThingList;
 import com.proj.thing.web.ThingSelect;
 
@@ -28,7 +29,8 @@ public class FrontController  extends HttpServlet {
 		// 로그인
 		map.put("/memberJoinForm.do", new memberJoinForm());
 		map.put("/memberJoin.do", new memberJoin());
-		
+		map.put("/memberLogin.do", new memberLogin());
+		map.put("/memberLoginCheck.do", new memberLoginCheck());
 		// 상품 홈페이지
 		map.put("/thingList.do", new ThingList());
 

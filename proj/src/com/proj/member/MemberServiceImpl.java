@@ -1,6 +1,7 @@
 package com.proj.member;
 
 import java.sql.PreparedStatement;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
@@ -12,6 +13,34 @@ public class MemberServiceImpl extends DAO implements MemberService{
 	PreparedStatement psmt;
 	ResultSet rs;
 	String sql;
+
+	
+	//id ,passwd를 체크해주는 
+	public MemberVO loginCheck(MemberVO vo) {
+		sql="select * from member where member_id=? and member_pwd=?";
+		MemberVO  rvo=null;
+		try {
+			psmt=conn.prepareStatement(sql);
+			psmt.setString(1, vo.getMemberId());
+			psmt.setString(2, vo.getMemberPwd());
+			rs=psmt.executeQuery();
+			if(rs.next()) {
+				rvo=new MemberVO();
+				rvo.setMemberId(rs.getString("member_id"));
+				rvo.setMemberPwd(rs.getString("member_pwd"));
+				rvo.setMemberName(rs.getString("member_name"));
+				rvo.setMemberEmail(rs.getString("member_email"));
+				rvo.setMemberTel(rs.getString("member_tel"));
+			}
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		}finally {
+			close();
+		}
+		return rvo;
+	}
+	
 	
 	//id를 중복 인지 체크 해주는 메소드 / 중복존재하면 true/아니면 false
 		public boolean idCheck(String id) {
@@ -44,7 +73,6 @@ public class MemberServiceImpl extends DAO implements MemberService{
 
 	@Override
 	public MemberVO selectMember() {
-	
 		return null;
 	}
 
