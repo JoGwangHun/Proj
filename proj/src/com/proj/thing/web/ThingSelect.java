@@ -13,8 +13,11 @@ public class ThingSelect implements DbCommand {
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		String id = request.getParameter("itemId");
 		
-		return null;
+		System.out.println(id);
+		
+		return "/thing/thingSelect.tiles";
 	}
 
 }

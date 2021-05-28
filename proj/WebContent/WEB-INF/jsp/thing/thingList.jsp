@@ -12,12 +12,20 @@ strong {
 	font-size: 20px;
 	line-height: 25px;
 }
-.row>* {
-	max-height: 350px;
+
+img {
+	margin-top: 25px;
+}
+.col-md-6 {
+	height: 350px;
+	width: 930px;	
+}
+.p-4 {
+	height: 300px;
 }
 </style>
-<div class="row mb-2">
-	<div class="col-md-6">
+
+	<!-- <div class="col-md-6">
 		<div
 			class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
 			<div class="col p-4 d-flex flex-column position-static">
@@ -38,19 +46,27 @@ strong {
 
 			</div>
 		</div>
-	</div>
+	</div> -->
+<div class="row mb-2">
 	<c:forEach items="${list }" var="list">
 		<div class="col-md-6">
 			<div
 				class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
 				<div class="col p-4 d-flex flex-column position-static">
 					<strong class="d-inline-block mb-2 text-success">${list.thingKind }</strong>
-					<h3 class="mb-0" style="font-size: 15pt;"><b>${list.thingName }</b></h3>
-					<div class="mb-1 text-muted" style="font-size: 10pt;">등록일 ${list.thingEnDate }</div>
+					<h3 class="mb-0" style="font-size: 15pt;">
+						<b>${list.thingName }</b>
+					</h3>
+					<div class="mb-1 text-muted" style="font-size: 10pt;">등록일
+						${list.thingEnDate }</div>
 					<p class="mb-auto" style="font-size: 11pt;">${list.thingDesc }</p>
-					<span class="price"><strong><fmt:formatNumber type="currency"
-							value="${list.thingPrice }"></fmt:formatNumber></strong>
-					</span> <a href="thingSelect.do" class="stretched-link">Continue reading</a>
+					<span class="price"><strong><fmt:formatNumber
+								type="currency" value="${list.thingPrice }"></fmt:formatNumber></strong>
+					</span>
+					<form action="thingSelect.do" >
+						<input type="hidden" name="itemId" value="${list.thingId }" />
+						<button type="submit" class="btn btn-outline-info">자세히보기</button>
+					</form>
 				</div>
 				<div class="col-auto d-none d-lg-block">
 					<img class="bd-placeholder-img" width="250" height="250"
@@ -65,3 +81,4 @@ strong {
 		</div>
 	</c:forEach>
 </div>
+

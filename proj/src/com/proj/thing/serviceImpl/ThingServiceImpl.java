@@ -44,8 +44,16 @@ public class ThingServiceImpl extends DAO implements ThingService {
 	}
 
 	@Override
-	public ThingVO ThingSelect(ThingVO vo) {
-		// TODO Auto-generated method stub
+	public ThingVO ThingSelect(int id) {
+		sql = "SELECT * FROM thing WHERE thing_id = ?";
+		
+		try {
+			psmt = conn.prepareStatement(sql);
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
 		return null;
 	}
 
