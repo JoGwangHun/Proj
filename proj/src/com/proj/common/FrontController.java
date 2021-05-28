@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.proj.member.memberJoin;
+import com.proj.thing.web.ThingList;
 
 public class FrontController  extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -20,6 +21,7 @@ public class FrontController  extends HttpServlet {
 	public void init(ServletConfig config) throws ServletException {
 		map.put("/index.do", new indexPage());
 		map.put("/memberJoin.do", new memberJoin());
+		map.put("/thingList.do", new ThingList());
 	}
 	
 	@Override
