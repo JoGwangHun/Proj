@@ -30,11 +30,8 @@ public class FrontController  extends HttpServlet {
 		map.put("/memberJoinForm.do", new memberJoinForm());
 		map.put("/memberJoin.do", new memberJoin());
 		map.put("/memberLogin.do", new memberLogin());
-<<<<<<< HEAD
 		
-=======
 		map.put("/memberLoginCheck.do", new memberLoginCheck());
->>>>>>> branch 'master' of https://github.com/Narin88/Proj.git
 		// 상품 홈페이지
 		map.put("/thingList.do", new ThingList());
 		map.put("/thingSelect.do", new ThingSelect());
