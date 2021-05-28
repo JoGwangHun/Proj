@@ -14,6 +14,7 @@ import com.proj.member.memberJoin;
 import com.proj.member.memberJoinForm;
 import com.proj.member.memberLogin;
 import com.proj.thing.web.ThingList;
+import com.proj.thing.web.ThingSelect;
 
 public class FrontController  extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -21,11 +22,19 @@ public class FrontController  extends HttpServlet {
 	
 	@Override
 	public void init(ServletConfig config) throws ServletException {
+		// 메인페이지
 		map.put("/index.do", new indexPage());
+		
+		// 로그인
 		map.put("/memberJoinForm.do", new memberJoinForm());
 		map.put("/memberJoin.do", new memberJoin());
+		
+		// 상품 홈페이지
 		map.put("/thingList.do", new ThingList());
+
 		map.put("/memberLogin.do", new memberLogin());
+
+		map.put("/thingSelect.do", new ThingSelect());
 	}
 	
 	@Override
