@@ -16,7 +16,7 @@
 	
 	<servlet>
 		<servlet-name>FrontControl</servlet-name>
-		<servlet-class>com.yedam.common.FrontController</servlet-class>
+		<servlet-class>com.proj.common.FrontController</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>FrontControl</servlet-name>
