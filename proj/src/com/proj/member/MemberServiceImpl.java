@@ -13,7 +13,19 @@ public class MemberServiceImpl extends DAO implements MemberService{
 	PreparedStatement psmt;
 	ResultSet rs;
 	String sql;
-
+	
+	//비밀번호 변경
+	public MemberVO updatePwd(MemberVO vo) {
+		sql="update  member set  member_pwd=? where member_pwd=?";
+		try {
+			psmt=conn.prepareStatement(sql);
+			psmt.setString(1, vo.getMemberPwd());
+			psmt.setString(2, vo.getMemberPwd());
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
 	
 	//id ,passwd를 체크해주는 
 	public MemberVO loginCheck(MemberVO vo) {
@@ -73,6 +85,7 @@ public class MemberServiceImpl extends DAO implements MemberService{
 
 	@Override
 	public MemberVO selectMember() {
+		
 		return null;
 	}
 
@@ -133,5 +146,29 @@ public class MemberServiceImpl extends DAO implements MemberService{
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
+	}
+
+
+	@Override
+	public MemberVO selectMember(MemberVO vo) {
+		sql="select * from member where member_id=?";
+		try {
+			psmt=conn.prepareStatement(sql);
+			psmt.setString(1, vo.getMemberId());
+			rs=psmt.executeQuery();
+			if(rs.next()) {
+				vo.setMemberId(rs.getString("member_id"));
+				vo.setMemberPwd(rs.getString("member_pwd"));
+				vo.setMemberName(rs.getString("member_name"));
+				vo.setMemberEmail(rs.getString("member_email"));
+				vo.setMemberTel(rs.getString("member_tel"));
+			}
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		}finally {
+			close();
+		}
+		return vo;
 	}
 }

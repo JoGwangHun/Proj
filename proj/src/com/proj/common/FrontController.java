@@ -1,6 +1,7 @@
 package com.proj.common;
 
 import java.io.IOException;
+
 import java.util.HashMap;
 
 import javax.servlet.RequestDispatcher;
@@ -10,8 +11,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.proj.info.infoUpdatePwd;
+import com.proj.info.infoUpdatePwdForm;
+import com.proj.member.memberInfo;
 import com.proj.member.memberJoin;
 import com.proj.member.memberJoinForm;
+import com.proj.member.memberLogOut;
 import com.proj.member.memberLogin;
 import com.proj.member.memberLoginCheck;
 import com.proj.thing.web.ThingList;
@@ -30,11 +35,16 @@ public class FrontController  extends HttpServlet {
 		map.put("/memberJoinForm.do", new memberJoinForm());
 		map.put("/memberJoin.do", new memberJoin());
 		map.put("/memberLogin.do", new memberLogin());
-		
+		map.put("/memberLogOut.do", new memberLogOut());
 		map.put("/memberLoginCheck.do", new memberLoginCheck());
 		// 상품 홈페이지
 		map.put("/thingList.do", new ThingList());
 		map.put("/thingSelect.do", new ThingSelect());
+		
+		//회원 정보
+		map.put("/infoUpdatePwd.do", new infoUpdatePwd());
+		map.put("/infoUpdatePwdForm.do", new infoUpdatePwdForm());
+		map.put("/memberInfo.do", new memberInfo());
 	}
 	
 	@Override

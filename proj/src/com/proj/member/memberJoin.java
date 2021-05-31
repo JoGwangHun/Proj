@@ -34,11 +34,12 @@ public class memberJoin implements DbCommand {
 			MemberService service = new MemberServiceImpl();
 			service.insertMember(vo);
 			
-			request.setAttribute("vo", vo);
+			session.setAttribute("id", id);			
+			session.setAttribute("vo", vo);
 			
 			
 		
-		return "/member/memberLogin.tiles";
+		return "/member/memberJoinSuccess.tiles";
 	}
 
 }

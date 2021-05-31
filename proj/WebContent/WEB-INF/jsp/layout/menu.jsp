@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c"  uri="http://java.sun.com/jsp/jstl/core" %>
 <header class="site-header sticky-top py-1">
   <nav class="container d-flex flex-column flex-md-row justify-content-between">
     <a class="py-2" href="#" aria-label="Product">
@@ -7,8 +8,9 @@
     </a>
     <a class="py-2 d-none d-md-inline-block" href="index.do">홈페이지</a>
     <a class="py-2 d-none d-md-inline-block" href="thingList.do">상품리스트</a>
-    <a class="py-2 d-none d-md-inline-block" href="#">장바구니</a>
-    <a class="py-2 d-none d-md-inline-block" href="memberLogin.do">로그인</a>
-    <a class="py-2 d-none d-md-inline-block" href="memberJoinForm.do">회원가입</a>
+    <a class="py-2 d-none d-md-inline-block" href="#">장바구니</a> 
+    
   </nav>
 </header>
+ 
+

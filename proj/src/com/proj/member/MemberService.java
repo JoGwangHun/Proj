@@ -11,4 +11,5 @@ public interface MemberService {
 	public int insertMember(MemberVO vo);
 	public int updateMember(MemberVO vo);
 	public int deleteMember(MemberVO vo);
+	MemberVO selectMember(MemberVO vo);
 }

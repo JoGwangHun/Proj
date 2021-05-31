@@ -7,11 +7,12 @@
 <meta charset="UTF-8">
 <!-- /WEB-INF/jsp/layout/template.jsp -->
 <title><tiles:getAsString name="title"></tiles:getAsString></title>
+   <link ${pageContext.request.contextPath }/product/dist/css/bootstrap.min.css">
 <link rel="canonical"
 	href="https://getbootstrap.com/docs/5.0/examples/product/">
 <!-- Bootstrap core CSS -->
 <link
-	href="${pageContext.request.contextPath }/product/dist/css/bootstrap.min.css"
+	href="${pageContext.request.contextPath }/Login/Login.css"
 	rel="stylesheet">
 <link href="${pageContext.request.contextPath }/product/product.css"
 	rel="stylesheet">
@@ -38,11 +39,15 @@
 		font-size: 3.5rem;
 	}
 }
+
 </style>
 
 </head>
 <body>
 	<tiles:insertAttribute name="menu">
+	</tiles:insertAttribute>
+	
+	<tiles:insertAttribute name="menu2">
 	</tiles:insertAttribute>
 
 	<%-- 	<tiles:insertAttribute name="head">
