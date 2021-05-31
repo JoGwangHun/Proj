@@ -14,6 +14,7 @@ import com.proj.member.memberJoin;
 import com.proj.member.memberJoinForm;
 import com.proj.member.memberLogin;
 import com.proj.member.memberLoginCheck;
+import com.proj.thing.web.ThingDelete;
 import com.proj.thing.web.ThingList;
 import com.proj.thing.web.ThingSelect;
 
@@ -32,9 +33,12 @@ public class FrontController  extends HttpServlet {
 		map.put("/memberLogin.do", new memberLogin());
 		
 		map.put("/memberLoginCheck.do", new memberLoginCheck());
+		
+		
 		// 상품 홈페이지
 		map.put("/thingList.do", new ThingList());
 		map.put("/thingSelect.do", new ThingSelect());
+		map.put("/thingDelete.do", new ThingDelete());
 	}
 	
 	@Override

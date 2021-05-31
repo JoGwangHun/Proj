@@ -7,7 +7,7 @@ import com.proj.thing.vo.ThingVO;
 public interface ThingService {
 	List<ThingVO> thingGetList();
 	
-	ThingVO ThingSelect(int id);
+	ThingVO ThingSelect(String id);
 
 	int insertThing(ThingVO vo);
 
