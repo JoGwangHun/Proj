@@ -7,6 +7,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.proj.common.DbCommand;
+import com.proj.thing.service.ThingService;
+import com.proj.thing.serviceImpl.ThingServiceImpl;
+import com.proj.thing.vo.ThingVO;
 
 public class ThingSelect implements DbCommand {
 
@@ -15,9 +18,12 @@ public class ThingSelect implements DbCommand {
 			throws ServletException, IOException {
 		String id = request.getParameter("itemId");
 		
-		System.out.println(id);
+		ThingService service = new ThingServiceImpl();
+		ThingVO vo = service.ThingSelect(id);
 		
-		return "/thing/thingSelect.tiles";
+		request.setAttribute("vo", vo);
+		
+		return "thing/thingSelect.tiles";
 	}
 
 }

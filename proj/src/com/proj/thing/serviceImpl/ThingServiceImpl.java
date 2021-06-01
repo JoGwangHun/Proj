@@ -42,19 +42,38 @@ public class ThingServiceImpl extends DAO implements ThingService {
 		}
 		return list;
 	}
-
+	
 	@Override
-	public ThingVO ThingSelect(int id) {
-		sql = "SELECT * FROM thing WHERE thing_id = ?";
+	public ThingVO ThingSelect(String id) {
+		sql = "SELECT t.*, p.* FROM thing t, price_his p WHERE t.thing_id = p.thing_id AND t.thing_id = ?";
+		ThingVO vo = new ThingVO();
 		
 		try {
 			psmt = conn.prepareStatement(sql);
-			
+			psmt.setString(1, id);
+			rs = psmt.executeQuery();
+			if(rs.next()) {
+				vo.setThingId(rs.getInt(1));
+				vo.setThingImage(rs.getString(2));
+				vo.setThingName(rs.getString(3));
+				vo.setThingPrice(rs.getInt(4));
+				vo.setThingEnDate(rs.getDate(5));
+				vo.setThingDesc(rs.getString(6));
+				vo.setThingKind(rs.getString(7));
+				vo.setThingImageDetail(rs.getString(8));
+				vo.setThingImageDetail2(rs.getString(9));
+				vo.setPrice1(rs.getInt(11));
+				vo.setPrice2(rs.getInt(12));
+				vo.setPrice3(rs.getInt(13));
+				vo.setPrice4(rs.getInt(14));
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			close();
 		}
 		
-		return null;
+		return vo;
 	}
 
 	@Override
@@ -71,8 +90,20 @@ public class ThingServiceImpl extends DAO implements ThingService {
 
 	@Override
 	public int deleteThing(ThingVO vo) {
-		// TODO Auto-generated method stub
-		return 0;
+		sql = "delete from thing where thing_id = ?";
+		int n = 0;
+		
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setInt(1, vo.getThingId());
+			n = psmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+		
+		return n;
 	}
 
 	// resource 반환

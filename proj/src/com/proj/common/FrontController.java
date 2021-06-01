@@ -19,6 +19,7 @@ import com.proj.member.memberJoinForm;
 import com.proj.member.memberLogOut;
 import com.proj.member.memberLogin;
 import com.proj.member.memberLoginCheck;
+import com.proj.thing.web.ThingDelete;
 import com.proj.thing.web.ThingList;
 import com.proj.thing.web.ThingSelect;
 
@@ -37,14 +38,20 @@ public class FrontController  extends HttpServlet {
 		map.put("/memberLogin.do", new memberLogin());
 		map.put("/memberLogOut.do", new memberLogOut());
 		map.put("/memberLoginCheck.do", new memberLoginCheck());
+		
+		
 		// 상품 홈페이지
 		map.put("/thingList.do", new ThingList());
 		map.put("/thingSelect.do", new ThingSelect());
+<<<<<<< HEAD
 		
 		//회원 정보
 		map.put("/infoUpdatePwd.do", new infoUpdatePwd());
 		map.put("/infoUpdatePwdForm.do", new infoUpdatePwdForm());
 		map.put("/memberInfo.do", new memberInfo());
+=======
+		map.put("/thingDelete.do", new ThingDelete());
+>>>>>>> branch 'master' of https://github.com/Narin88/Proj.git
 	}
 	
 	@Override
