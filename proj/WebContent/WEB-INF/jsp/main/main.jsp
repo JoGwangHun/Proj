@@ -1,85 +1,50 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<div class="d-md-flex flex-md-equal w-100 my-md-3 ps-md-3">
-	<div
-		class="bg-dark me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center text-white overflow-hidden">
-		<div class="my-3 py-3">
-			<h2 class="display-5">Another headline</h2>
-			<p class="lead">And an even wittier subheading.</p>
-		</div>
-		<div class="bg-light shadow-sm mx-auto"
-			style="width: 80%; height: 300px; border-radius: 21px 21px 0 0;"></div>
-	</div>
-	<div
-		class="bg-light me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
-		<div class="my-3 p-3">
-			<h2 class="display-5">Another headline</h2>
-			<p class="lead">And an even wittier subheading.</p>
-		</div>
-		<div class="bg-dark shadow-sm mx-auto"
-			style="width: 80%; height: 300px; border-radius: 21px 21px 0 0;"></div>
-	</div>
-</div>
+<!doctype html>
+<html class="html1">
+  <head>
+  <meta charset="utf-8">
+  <meta name="description" content="Icon Fonts in Use with a Fancy Hover Effect - Demo" />
+<meta name="keywords" content="social icons fonts hover with css3 transitions pseudo-elements" />
+<meta name="author" content="PeHaa for PEPSized" />
 
-<div class="d-md-flex flex-md-equal w-100 my-md-3 ps-md-3">
-	<div
-		class="bg-light me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
-		<div class="my-3 p-3">
-			<h2 class="display-5">Another headline</h2>
-			<p class="lead">And an even wittier subheading.</p>
-		</div>
-		<div class="bg-dark shadow-sm mx-auto"
-			style="width: 80%; height: 300px; border-radius: 21px 21px 0 0;"></div>
-	</div>
-	<div
-		class="bg-primary me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center text-white overflow-hidden">
-		<div class="my-3 py-3">
-			<h2 class="display-5">Another headline</h2>
-			<p class="lead">And an even wittier subheading.</p>
-		</div>
-		<div class="bg-light shadow-sm mx-auto"
-			style="width: 80%; height: 300px; border-radius: 21px 21px 0 0;"></div>
-	</div>
-</div>
+    <style>
+    
+.preview {
 
-<div class="d-md-flex flex-md-equal w-100 my-md-3 ps-md-3">
-	<div
-		class="bg-light me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
-		<div class="my-3 p-3">
-			<h2 class="display-5">Another headline</h2>
-			<p class="lead">And an even wittier subheading.</p>
-		</div>
-		<div class="bg-body shadow-sm mx-auto"
-			style="width: 80%; height: 300px; border-radius: 21px 21px 0 0;"></div>
-	</div>
-	<div
-		class="bg-light me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
-		<div class="my-3 py-3">
-			<h2 class="display-5">Another headline</h2>
-			<p class="lead">And an even wittier subheading.</p>
-		</div>
-		<div class="bg-body shadow-sm mx-auto"
-			style="width: 80%; height: 300px; border-radius: 21px 21px 0 0;"></div>
-	</div>
-</div>
+position: absolute; right: 0; bottom: 0;top: 0; left: 0;
 
-<div class="d-md-flex flex-md-equal w-100 my-md-3 ps-md-3">
-	<div
-		class="bg-light me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
-		<div class="my-3 p-3">
-			<h2 class="display-5">Another headline</h2>
-			<p class="lead">And an even wittier subheading.</p>
-		</div>
-		<div class="bg-body shadow-sm mx-auto"
-			style="width: 80%; height: 300px; border-radius: 21px 21px 0 0;"></div>
-	</div>
-	<div
-		class="bg-light me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
-		<div class="my-3 py-3">
-			<h2 class="display-5">Another headline</h2>
-			<p class="lead">And an even wittier subheading.</p>
-		</div>
-		<div class="bg-body shadow-sm mx-auto"
-			style="width: 80%; height: 300px; border-radius: 21px 21px 0 0;"></div>
-	</div>
-</div>
+min-width: 100%; min-height: 100%;
+
+width: auto; height: auto; z-index: -100;
+
+/*background: url(polina.jpg) no-repeat;*/
+
+background-size: cover;
+
+}
+    </style>
+ </head>
+ 
+ 
+ 
+  <body class="body1"> 
+  <!--background 전체 -->
+<video width="320" height="240" autoplay class="preview" muted loop>
+<source src="mp4/background.mp4" type="video/mp4">
+</video>
+
+<section class="example" id="ex2">
+		<header>
+			<h1 class="h11">: D A N A W A A : </h1>
+		</header>
+		<ul class="social">
+			<li><a id="aId" href="#" aria-hidden="true" class="icon-twitter" >BEST</a></li>
+			<!-- <li><a href="#" aria-hidden="true" class="icon-pinterest"></a></li> -->
+			<li><a id="aId" href="#" aria-hidden="true" class="icon-github">???</a></li>
+			<li><a id="aId" href="#" aria-hidden="true" class="icon-flickr">???</a></li>
+		</ul>
+	</section>
+
+</body>
+</html>
