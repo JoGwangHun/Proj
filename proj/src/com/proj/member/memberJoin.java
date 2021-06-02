@@ -34,13 +34,12 @@ public class memberJoin implements DbCommand {
 			MemberService service = new MemberServiceImpl();
 			service.insertMember(vo);
 			
-<<<<<<< HEAD
+
 			session.setAttribute("id", id);			
 			session.setAttribute("vo", vo);
-=======
+
 			session.setAttribute("id", vo.getMemberId());
 			request.setAttribute("vo", vo);
->>>>>>> branch 'master' of https://github.com/Narin88/Proj.git
 			
 			
 		
