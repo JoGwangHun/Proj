@@ -16,7 +16,7 @@ public class MemberServiceImpl extends DAO implements MemberService{
 	
 	//비밀번호 변경
 	public MemberVO updatePwd(MemberVO vo) {
-		sql="update  member set  member_pwd=? where member_pwd=?";
+		sql="update  member set  memberd=? where member_pwd=?";
 		try {
 			psmt=conn.prepareStatement(sql);
 			psmt.setString(1, vo.getMemberPwd());
