@@ -4,6 +4,9 @@ public class CartVO {
 	private String user_id;
 	private int thing_id;
 	private int count;
+	private String thing_name;
+	private int price;
+	private int totalPrice;
 
 	public String getUser_id() {
 		return user_id;
@@ -27,5 +30,29 @@ public class CartVO {
 
 	public void setCount(int count) {
 		this.count = count;
+	}
+
+	public String getThing_name() {
+		return thing_name;
+	}
+
+	public void setThing_name(String thing_name) {
+		this.thing_name = thing_name;
+	}
+
+	public int getPrice() {
+		return price;
+	}
+
+	public void setPrice(int price) {
+		this.price = price;
+	}
+
+	public int getTotalPrice() {
+		return totalPrice;
+	}
+
+	public void setTotalPrice(int totalPrice) {
+		this.totalPrice = totalPrice;
 	}
 }

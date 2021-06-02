@@ -8,6 +8,7 @@ import java.util.List;
 
 import com.proj.common.DAO;
 import com.proj.thing.service.ThingService;
+import com.proj.thing.vo.CartVO;
 import com.proj.thing.vo.ThingVO;
 
 public class ThingServiceImpl extends DAO implements ThingService {
@@ -15,16 +16,70 @@ public class ThingServiceImpl extends DAO implements ThingService {
 	private ResultSet rs;
 	private String sql;
 
+	// 가격 총합
+	public int getTotalPrice(String user_id) {
+		sql = "select sum(total) from (SELECT t.user_id, t.thing_id, t.thing_name, t.thing_price, sum(c.count) AS cnt, (t.thing_price * sum(c.count)) AS total\r\n"
+				+ "FROM thing t, cart c\r\n"
+				+ "WHERE t .thing_id = c.thing_id AND t.user_id = c.user_id AND t.user_id = ?\r\n"
+				+ "GROUP BY t.user_id, t.thing_id, t.thing_name, t.thing_price, c.count) group by user_id";
+		int total = 0;
+
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, user_id);
+			rs = psmt.executeQuery();
+			while (rs.next()) {
+				total = rs.getInt(1);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return total;
+	}
+
+	// cartList가져오기
+	public List<CartVO> getCartList(String user_id) {
+		sql = "SELECT t.user_id, t.thing_id, t.thing_name, t.thing_price, sum(c.count) AS cnt, (t.thing_price * sum(c.count)) AS total\r\n"
+				+ "FROM thing t, cart c\r\n"
+				+ "WHERE t .thing_id = c.thing_id AND t.user_id = c.user_id AND t.user_id = ?\r\n"
+				+ "GROUP BY t.user_id, t.thing_id, t.thing_name, t.thing_price, c.count";
+		List<CartVO> list = new ArrayList<CartVO>();
+
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, user_id);
+			rs = psmt.executeQuery();
+			while (rs.next()) {
+				CartVO vo = new CartVO();
+				vo.setUser_id(rs.getString("user_id"));
+				vo.setThing_id(rs.getInt("thing_id"));
+				vo.setThing_name(rs.getString("thing_name"));
+				vo.setPrice(rs.getInt("thing_price"));
+				vo.setCount(rs.getInt("cnt"));
+				vo.setTotalPrice(rs.getInt("total"));
+
+				list.add(vo);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+
+		return list;
+	}
+
 	// cart안의 정보 갯수를 가져오기
 	public int getCountCart(String id) {
 		sql = "SELECT count(*) FROM cart WHERE user_id = ?";
 		int cnt = 0;
-		
+
 		try {
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, id);
 			rs = psmt.executeQuery();
-			if(rs.next()) {
+			if (rs.next()) {
 				cnt = rs.getInt(1);
 			}
 		} catch (SQLException e) {
@@ -34,7 +89,7 @@ public class ThingServiceImpl extends DAO implements ThingService {
 		}
 		return cnt;
 	}
-	
+
 	// cart 정보 추가하는 메소드
 	public void addCartCnt(String user_id, int thing_id, int qty) {
 		sql = "INSERT INTO cart VALUES(?, ?, ?)";
@@ -233,5 +288,4 @@ public class ThingServiceImpl extends DAO implements ThingService {
 			e.printStackTrace();
 		}
 	}
-
 }
