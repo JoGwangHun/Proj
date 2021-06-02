@@ -1,18 +1,15 @@
 package com.proj.thing.vo;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
 public class ThingVO {
 	private int thingId; // 물건 고유번호
 	private String thingImage; // 물건 사진
 	private String thingName; // 물건 이름
 	private int thingPrice; // 물건 가격
-	private String thingEnDate; // 물건 올린 날짜
 	private String thingDesc; // 물건 설명
 	private String thingKind; // 물건 종류
 	private String thingImageDetail; // 상세설명이미지
-	private String thingImageDetail2; // 상세설명이미지
+	private String thingDetailDesc; // 상세설명이미지
+	private String userId;
 	private int price1;
 	private int price2;
 	private int price3;
@@ -50,16 +47,6 @@ public class ThingVO {
 		this.thingPrice = thingPrice;
 	}
 
-	public String getThingEnDate() {
-		return thingEnDate;
-	}
-
-	public void setThingEnDate(Date thingEnDate) {
-		SimpleDateFormat formatType = new SimpleDateFormat("yy.MM.dd");
-
-		this.thingEnDate = formatType.format(thingEnDate);
-	}
-
 	public String getThingDesc() {
 		return thingDesc;
 	}
@@ -74,6 +61,14 @@ public class ThingVO {
 
 	public void setThingKind(String thingKind) {
 		this.thingKind = thingKind;
+	}
+
+	public String getUserId() {
+		return userId;
+	}
+
+	public void setUserId(String userId) {
+		this.userId = userId;
 	}
 
 	public int getPrice1() {
@@ -108,10 +103,6 @@ public class ThingVO {
 		this.price4 = price4;
 	}
 
-	public void setThingEnDate(String thingEnDate) {
-		this.thingEnDate = thingEnDate;
-	}
-
 	public String getThingImageDetail() {
 		return thingImageDetail;
 	}
@@ -120,11 +111,11 @@ public class ThingVO {
 		this.thingImageDetail = thingImageDetail;
 	}
 
-	public String getThingImageDetail2() {
-		return thingImageDetail2;
+	public String getThingDetailDesc() {
+		return thingDetailDesc;
 	}
 
-	public void setThingImageDetail2(String thingImageDetail2) {
-		this.thingImageDetail2 = thingImageDetail2;
+	public void setThingDetailDesc(String thingDetailDesc) {
+		this.thingDetailDesc = thingDetailDesc;
 	}
 }

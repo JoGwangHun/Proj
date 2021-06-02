@@ -14,9 +14,12 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script type="text/javascript"
 	src="https://www.gstatic.com/charts/loader.js"></script>
 <script type="text/javascript">
+	//차트 시작
 	google.charts.load('current', {
 		'packages' : [ 'line' ]
 	});
@@ -58,15 +61,45 @@
 
 		chart.draw(data, google.charts.Line.convertOptions(options));
 	}
-</script>
-<script>
+	// 차트 끝 
+
+	// 수정, 삭제 버튼 함수 시작
 	function btnFnc(str) {
-		
-		if(str == "del") {
+		let title = $("#title").val();
+		let price = $("#price").val();
+		let desc = $("#desc").val();
+		let dayPrice1 = $("#dayPrice1").val();
+		let dayPrice2 = $("#dayPrice2").val();
+		let dayPrice3 = $("#dayPrice3").val();
+		let dayPrice4 = $("#dayPrice4").val();
+		let input_image = $("#input_image").val().substring(12);
+		let input_detail = $("#input_detail").val().substring(12);
+		let input_desc = $("#input_desc").val().substring(12);
+		let kind = $("#kind").val();
+
+		if (str == "del") {
 			delFrm.submit();
 			return false;
 		}
+
+		if (str == "update") {
+			updateFrm.chTitle.value = title;
+			updateFrm.chPrice.value = price;
+			updateFrm.chDesc.value = desc;
+			updateFrm.chDayPrice1.value = dayPrice1;
+			updateFrm.chDayPrice2.value = dayPrice2;
+			updateFrm.chDayPrice3.value = dayPrice3;
+			updateFrm.chDayPrice4.value = dayPrice4;
+			updateFrm.chImage.value = input_image;
+			updateFrm.chDetailImage.value = input_detail;
+			updateFrm.chDetailDesc.value = input_desc;
+			updateFrm.chKind.value = kind;
+
+			updateFrm.submit();
+			return false;
+		}
 	}
+	// 수정, 삭제 버튼 함수 끝
 </script>
 
 <title>상품선택</title>
@@ -79,6 +112,23 @@ li {
 </head>
 
 <body id="page-top">
+	<form id="updateFrm" action="thingUpdate.do" method="post">
+		<input type="hidden" name="chId" value="${vo.thingId }" />
+		<input	type="hidden" name="chTitle" />
+		<input type="hidden" name="chPrice" />
+		<input type="hidden" name="chDesc" />
+		<input type="hidden" name="chDayPrice1" />
+		<input type="hidden" name="chDayPrice2" />
+		<input type="hidden" name="chDayPrice3" />
+		<input type="hidden" name="chDayPrice4" />
+		<input type="hidden" name="chImage" />
+		<input type="hidden" name="chDetailImage" value="${vo.thingImageDetail }" />
+		<input type="hidden" name="chDetailDesc" value="${vo.thingDetailDesc }" />
+		<input type="hidden" name="chKind" />
+	</form>
+	<form id="delFrm" action="thingDelete.do" method="post">
+		<input name="delId" type="hidden" value="${vo.thingId }" />
+	</form>
 
 	<!-- Page Wrapper -->
 	<div id="wrapper">
@@ -95,7 +145,16 @@ li {
 					<!-- Page Heading -->
 					<div
 						class="d-sm-flex align-items-center justify-content-between mb-4">
-						<h1 class="h3 mb-0 text-gray-800">${vo.thingName }</h1>
+						<c:if test="${id ne vo.userId }">
+							<h1 class="h3 mb-0 text-gray-800">${vo.thingName }</h1>
+							<h1 class="h3 mb-0 text-gray-800">종류: ${vo.thingKind }</h1>
+						</c:if>
+						<c:if test="${id eq vo.userId }">
+							<input type="text" id="title" name="title"
+								value="${vo.thingName }" size="60" />
+							<input type="text" id="kind" name="kind"
+								value="${vo.thingKind }" size="10" />
+						</c:if>
 					</div>
 
 					<!-- Content Row -->
@@ -109,9 +168,15 @@ li {
 										<div class="col mr-2">
 											<div
 												class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-												Price</div>
+												가격</div>
 											<div class="h5 mb-0 font-weight-bold text-gray-800">
-												<fmt:formatNumber type="currency" value="${vo.thingPrice }"></fmt:formatNumber>
+												<c:if test="${id ne vo.userId }">
+													<fmt:formatNumber type="currency" value="${vo.thingPrice }"></fmt:formatNumber>
+												</c:if>
+												<c:if test="${id eq vo.userId }">
+													<input type="text" id="price" name="price"
+														value="${vo.thingPrice }" size="10" />
+												</c:if>
 											</div>
 										</div>
 									</div>
@@ -126,12 +191,17 @@ li {
 									<div class="row no-gutters align-items-center">
 										<div class="col mr-2">
 											<div
-												class="text-xs font-weight-bold text-info text-uppercase mb-1">simple
+												class="text-xs font-weight-bold text-info text-uppercase mb-1">간략 스펙
 											</div>
 											<div class="row no-gutters align-items-center">
 												<div class="col-auto">
-													<div class="h5 mb-0 mr-3 font-weight-bold text-gray-800"
-														style="font-size: 10pt">${vo.thingDesc }</div>
+													<c:if test="${id ne vo.userId }">
+														<div class="h5 mb-0 mr-3 font-weight-bold text-gray-800"
+															style="font-size: 10pt">${vo.thingDesc }</div>
+													</c:if>
+													<c:if test="${id eq vo.userId }">
+														<textarea name="desc" id="desc" cols="90" rows="2">${vo.thingDesc }</textarea>
+													</c:if>
 												</div>
 											</div>
 										</div>
@@ -149,12 +219,25 @@ li {
 											<div
 												class="text-xs font-weight-bold text-warning text-uppercase mb-1">
 												1개월 가격변화</div>
-											<div id="line_top_x">
-												<input id="price1_val" type="hidden" value="${vo.price1 }" />
-												<input id="price2_val" type="hidden" value="${vo.price2 }" />
-												<input id="price3_val" type="hidden" value="${vo.price3 }" />
-												<input id="price4_val" type="hidden" value="${vo.price4 }" />
-											</div>
+											<c:if test="${id ne vo.userId }">
+												<div id="line_top_x">
+													<input id="price1" type="hidden" value="${vo.price1 }" />
+													<input id="price2" type="hidden" value="${vo.price2 }" />
+													<input id="price3" type="hidden" value="${vo.price3 }" />
+													<input id="price4" type="hidden" value="${vo.price4 }" />
+												</div>
+											</c:if>
+											<c:if test="${id eq vo.userId }">
+												1.<input id="dayPrice1" type="text" value="${vo.price1 }"
+													size="17" />
+												2.<input id="dayPrice2" type="text" value="${vo.price2 }"
+													size="17" />
+												<br />
+												3.<input id="dayPrice3" type="text" value="${vo.price3 }"
+													size="17" />
+												4.<input id="dayPrice4" type="text" value="${vo.price4 }"
+													size="17" />
+											</c:if>
 										</div>
 									</div>
 								</div>
@@ -177,8 +260,17 @@ li {
 								<!-- Card Body -->
 								<div class="card-body">
 									<div class="pb-2">
-										<img src="upload/${vo.thingImage }" width="380px"
-											height="350px" style="margin: -0.8em 0 3em 4em;" />
+										<c:if test="${id ne vo.userId }">
+											<img src="upload/${vo.thingImage }" width="380px"
+												height="350px" style="margin: -0.8em 0 3em 4em;" />
+										</c:if>
+										<c:if test="${id eq vo.userId }">
+											<img src="upload/${vo.thingImage }" width="250px"
+												height="220px" style="margin: -0.8em 0 3em 4em;"
+												id="preview-image" />
+											<input type="file" accept="image/*" onchange="loadImg(this);"
+												id="input_image" />
+										</c:if>
 									</div>
 								</div>
 							</div>
@@ -211,7 +303,15 @@ li {
 									<h6 class="m-0 font-weight-bold text-primary">상세이미지</h6>
 								</div>
 								<div class="card-body">
-									<img src="upload/detail/${vo.thingImageDetail }" />
+									<c:if test="${id ne vo.userId }">
+										<img src="upload/detail/${vo.thingImageDetail }" />
+									</c:if>
+									<c:if test="${id eq vo.userId }">
+										<input type="file" accept="image/*" onchange="loadImg2(this);"
+											id="input_detail" />
+										<img src="upload/detail/${vo.thingImageDetail }"
+											id="preview-image2" />
+									</c:if>
 								</div>
 							</div>
 						</div>
@@ -226,18 +326,25 @@ li {
 								</div>
 								<div class="card-body">
 									<div class="prod_spec">
-										<img src="upload/detail/${vo.thingImageDetail2 }" />
+										<c:if test="${id ne vo.userId }">
+											<img src="upload/desc/${vo.thingDetailDesc }" />
+										</c:if>
+										<c:if test="${id eq vo.userId }">
+											<input type="file" accept="image/*"
+												onchange="loadImg3(this);" id="input_desc" />
+											<img src="upload/desc/${vo.thingDetailDesc }"
+												id="preview-image3" />
+										</c:if>
 									</div>
 								</div>
 							</div>
 							<div style="text-align: center">
-								
-									<button class="btn btn-outline-dark" type="button" onclick="btnFnc('update')">수정</button>
+								<c:if test="${id eq vo.userId }">
+									<button class="btn btn-outline-dark" type="button"
+										onclick="btnFnc('update')">수정</button>
 									<button class="btn btn-outline-dark" type="button"
 										onclick="btnFnc('del')">삭제</button>
-								<form id="delFrm" action="thingDelete.do" method="post">
-									<input name="delId" type="hidden" value="${vo.thingId }" />
-								</form>
+								</c:if>								
 							</div>
 
 						</div>
@@ -251,16 +358,6 @@ li {
 			</div>
 			<!-- End of Main Content -->
 
-			<!-- Footer -->
-			<footer class="sticky-footer bg-white">
-				<div class="container my-auto">
-					<div class="copyright text-center my-auto">
-						<span>Copyright &copy; Your Website 2021</span>
-					</div>
-				</div>
-			</footer>
-			<!-- End of Footer -->
-
 		</div>
 		<!-- End of Content Wrapper -->
 
@@ -271,29 +368,6 @@ li {
 	<a class="scroll-to-top rounded" href="#page-top"> <i
 		class="fas fa-angle-up"></i>
 	</a>
-
-	<!-- Logout Modal-->
-	<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog"
-		aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-					<button class="close" type="button" data-dismiss="modal"
-						aria-label="Close">
-						<span aria-hidden="true">×</span>
-					</button>
-				</div>
-				<div class="modal-body">Select "Logout" below if you are ready
-					to end your current session.</div>
-				<div class="modal-footer">
-					<button class="btn btn-secondary" type="button"
-						data-dismiss="modal">Cancel</button>
-					<a class="btn btn-primary" href="login.html">Logout</a>
-				</div>
-			</div>
-		</div>
-	</div>
 
 	<!-- Bootstrap core JavaScript-->
 	<script
@@ -318,6 +392,36 @@ li {
 		src="${pageContext.request.contextPath }/admin/js/demo/chart-area-demo.js"></script>
 	<script
 		src="${pageContext.request.contextPath }/admin/js/demo/chart-pie-demo.js"></script>
+
+	<script>
+		function loadImg(value) {
+			if (value.files && value.files[0]) {
+				var reader = new FileReader();
+				reader.onload = function(e) {
+					$("#preview-image").attr("src", e.target.result);
+				}
+				reader.readAsDataURL(value.files[0]);
+			}
+		}
+		function loadImg2(value) {
+			if (value.files && value.files[0]) {
+				var reader = new FileReader();
+				reader.onload = function(e) {
+					$("#preview-image2").attr("src", e.target.result);
+				}
+				reader.readAsDataURL(value.files[0]);
+			}
+		}
+		function loadImg3(value) {
+			if (value.files && value.files[0]) {
+				var reader = new FileReader();
+				reader.onload = function(e) {
+					$("#preview-image3").attr("src", e.target.result);
+				}
+				reader.readAsDataURL(value.files[0]);
+			}
+		}
+	</script>
 
 </body>
 

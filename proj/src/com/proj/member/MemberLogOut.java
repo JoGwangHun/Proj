@@ -9,16 +9,15 @@ import javax.servlet.http.HttpSession;
 
 import com.proj.common.DbCommand;
 
-public class memberLogOut implements DbCommand{
+public class MemberLogOut implements DbCommand {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
 		HttpSession session = request.getSession();
 		session.invalidate();
-		
-		return "member/memberLogOut.tiles";
+
+		return "main/main.tiles";
 	}
-	
+
 }

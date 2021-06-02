@@ -50,15 +50,12 @@ img {
 <div class="row mb-2">
 	<c:forEach items="${list }" var="list">
 		<div class="col-md-6">
-			<div
-				class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+			<div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
 				<div class="col p-4 d-flex flex-column position-static">
 					<strong class="d-inline-block mb-2 text-success">${list.thingKind }</strong>
 					<h3 class="mb-0" style="font-size: 15pt;">
 						<b>${list.thingName }</b>
 					</h3>
-					<div class="mb-1 text-muted" style="font-size: 10pt;">등록일
-						${list.thingEnDate }</div>
 					<p class="mb-auto" style="font-size: 11pt;">${list.thingDesc }</p>
 					<span class="price"><strong><fmt:formatNumber
 								type="currency" value="${list.thingPrice }"></fmt:formatNumber></strong>
@@ -73,12 +70,11 @@ img {
 						src="upload/${list.thingImage }" role="img"
 						aria-label="Placeholder: Thumbnail"
 						preserveAspectRatio="xMidYMid slice" focusable="false">
-					<title>Placeholder</title>
-					<rect width="100%" height="100%" fill="#55595c" />
-					</svg>
 				</div>
 			</div>
 		</div>
 	</c:forEach>
+	<div style="text-align: right;">
+		<button class="btn btn-outline-dark" type="button" onclick="location.href='thingForm.do'">등록</button>
+	</div>
 </div>
-

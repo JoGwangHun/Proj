@@ -11,17 +11,23 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+<<<<<<< HEAD
 import com.proj.info.infoUpdatePwd;
 import com.proj.info.infoUpdatePwdForm;
 import com.proj.member.memberInfo;
+=======
+import com.proj.member.MemberLogOut;
+>>>>>>> branch 'master' of https://github.com/Narin88/Proj.git
 import com.proj.member.memberJoin;
 import com.proj.member.memberJoinForm;
 import com.proj.member.memberLogOut;
 import com.proj.member.memberLogin;
 import com.proj.member.memberLoginCheck;
 import com.proj.thing.web.ThingDelete;
+import com.proj.thing.web.ThingForm;
 import com.proj.thing.web.ThingList;
 import com.proj.thing.web.ThingSelect;
+import com.proj.thing.web.ThingUpdate;
 
 public class FrontController  extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -37,21 +43,26 @@ public class FrontController  extends HttpServlet {
 		map.put("/memberJoin.do", new memberJoin());
 		map.put("/memberLogin.do", new memberLogin());
 		map.put("/memberLogOut.do", new memberLogOut());
+
 		map.put("/memberLoginCheck.do", new memberLoginCheck());
+		map.put("/memberLogOut.do", new MemberLogOut());
 		
 		
 		// 상품 홈페이지
 		map.put("/thingList.do", new ThingList());
 		map.put("/thingSelect.do", new ThingSelect());
-<<<<<<< HEAD
-		
+
 		//회원 정보
 		map.put("/infoUpdatePwd.do", new infoUpdatePwd());
 		map.put("/infoUpdatePwdForm.do", new infoUpdatePwdForm());
 		map.put("/memberInfo.do", new memberInfo());
-=======
+
 		map.put("/thingDelete.do", new ThingDelete());
->>>>>>> branch 'master' of https://github.com/Narin88/Proj.git
+
+		map.put("/thingDelete.do", new ThingDelete());
+		map.put("/thingUpdate.do", new ThingUpdate());
+		map.put("/thingForm.do", new ThingForm());
+
 	}
 	
 	@Override
