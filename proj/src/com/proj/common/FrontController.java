@@ -11,19 +11,18 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.proj.cart.web.AddCartCnt;
+import com.proj.cart.web.CartList;
 import com.proj.info.infoAlter;
 import com.proj.info.infoAlterForm;
 import com.proj.info.infoUpdatePwd;
 import com.proj.info.infoUpdatePwdForm;
 import com.proj.member.memberInfo;
 import com.proj.member.MemberLogOut;
-import com.proj.member.memberDelete;
-import com.proj.member.memberDeleteForm;
 import com.proj.member.memberJoin;
 import com.proj.member.memberJoinForm;
 import com.proj.member.memberLogin;
 import com.proj.member.memberLoginCheck;
-import com.proj.thing.web.AddCartCnt;
 import com.proj.thing.web.ThingDelete;
 import com.proj.thing.web.ThingForm;
 import com.proj.thing.web.ThingInsert;
@@ -64,8 +63,9 @@ public class FrontController  extends HttpServlet {
 		map.put("/infoUpdatePwdForm.do", new infoUpdatePwdForm());
 		map.put("/memberInfo.do", new memberInfo());
 
-		// 장바구니 카운트
+		// 장바구니
 		map.put("/addCnt.do", new AddCartCnt());
+		map.put("/cartList.do", new CartList());
 	}
 	
 	@Override
