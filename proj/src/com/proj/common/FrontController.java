@@ -11,16 +11,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-<<<<<<< HEAD
 import com.proj.info.infoUpdatePwd;
 import com.proj.info.infoUpdatePwdForm;
 import com.proj.member.memberInfo;
-=======
 import com.proj.member.MemberLogOut;
->>>>>>> branch 'master' of https://github.com/Narin88/Proj.git
 import com.proj.member.memberJoin;
 import com.proj.member.memberJoinForm;
-import com.proj.member.memberLogOut;
 import com.proj.member.memberLogin;
 import com.proj.member.memberLoginCheck;
 import com.proj.thing.web.ThingDelete;
@@ -42,7 +38,7 @@ public class FrontController  extends HttpServlet {
 		map.put("/memberJoinForm.do", new memberJoinForm());
 		map.put("/memberJoin.do", new memberJoin());
 		map.put("/memberLogin.do", new memberLogin());
-		map.put("/memberLogOut.do", new memberLogOut());
+		map.put("/memberLogOut.do", new MemberLogOut());
 
 		map.put("/memberLoginCheck.do", new memberLoginCheck());
 		map.put("/memberLogOut.do", new MemberLogOut());
