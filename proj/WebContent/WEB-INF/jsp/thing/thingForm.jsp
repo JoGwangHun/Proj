@@ -16,6 +16,14 @@ function imageBtnFnc(){
     formData.append("fileObj", $("#thingImage")[0].files[0]);
     formData.append("fileObj2", $("#detailImage")[0].files[0]);
     formData.append("fileObj3", $("#detailDesc")[0].files[0]);
+    
+   	let imageName = $("#thingImage").get(0).files[0].name;
+   	let detailName = $("#detailImage").get(0).files[0].name;
+   	let descName = $("#detailDesc").get(0).files[0].name;
+   	
+   	spec.imageName.value = imageName;
+   	spec.detailName.value = detailName;
+   	spec.descName.value = descName; 
 
     $.ajax({
 	        url: '/proj/fileUpload',
@@ -30,7 +38,8 @@ function imageBtnFnc(){
             	console.log(err)
             } 
      	
-        });
+    });
+    spec.submit();
 }
 </script>
 </head>
@@ -48,7 +57,10 @@ function imageBtnFnc(){
 					<!-- Begin Page Content -->
 					<div class="container-fluid">
 						<div>
-						<form action="#" method="post" id="spec">
+						<form action="thingInsert.do" method="post" id="spec" name="spec">
+						<input type="hidden" name="imageName" />
+						<input type="hidden" name="detailName" />
+						<input type="hidden" name="descName" />
 							<div style="text-align: center;">
 								<button class="btn btn-outline-success" type="button" onclick="imageBtnFnc()">이미지업로드</button>
 								<input class="btn btn-outline-danger" type="reset" value="초기화" />
@@ -57,8 +69,9 @@ function imageBtnFnc(){
 							<!-- Page Heading -->
 							<div
 								class="d-sm-flex align-items-center justify-content-between mb-4">
-								<input type="text" placeholder="기기명" /> <input type="text"
-									placeholder="기기종류" />
+								<input type="hidden" id="id" name="id" value="${id }" />
+								<input type="text" id="name" name="name" placeholder="기기명" /> 
+								<input type="text" id="kind" name="kind" placeholder="기기종류" />
 							</div>
 							<!-- Content Row -->
 							<div class="row">
@@ -104,10 +117,10 @@ function imageBtnFnc(){
 											<div class="row no-gutters align-items-center">
 												<div class="col mr-2">
 													<div class="text-xs font-weight-bold text-warning text-uppercase mb-1">1개월 가격변화</div>
-													<input id="price1" name="price1" type="text" placeholder="가격기록1" />
-													<input id="price2" name="price2" type="text" placeholder="가격기록2" />
-													<input id="price3" name="price3" type="text" placeholder="가격기록3" />
-													<input id="price4" name="price4" type="text" placeholder="가격기록4" />
+													<input id="dayPrice1" name="dayPrice1" type="text" placeholder="가격기록1" />
+													<input id="dayPrice2" name="dayPrice2" type="text" placeholder="가격기록2" />
+													<input id="dayPrice3" name="dayPrice3" type="text" placeholder="가격기록3" />
+													<input id="dayPrice4" name="dayPrice4" type="text" placeholder="가격기록4" />
 												</div>
 											</div>
 										</div>
@@ -119,7 +132,7 @@ function imageBtnFnc(){
 						
 
 						<!-- Content Row -->
-					<form action="" method="post" id="picture" enctype="multipart/form-data">
+					<form action="" id="picture" enctype="multipart/form-data">
 						<div class="row">
 						<!-- Area Chart -->
 							<div class="col-xl-8 col-lg-7">

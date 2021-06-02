@@ -29,8 +29,8 @@ public class FileUpload extends HttpServlet {
 				req, //
 				path, //
 				8 * 1024 * 1024, // 
-				"UTF-8", //
-				new DefaultFileRenamePolicy());
+				"UTF-8");//, 
+				//new DefaultFileRenamePolicy());
 		
 		Enumeration en = multi.getFileNames();
 		String fileN = null;

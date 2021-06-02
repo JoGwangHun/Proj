@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <style>
 strong {
 	text-transform: uppercase;
@@ -63,6 +64,7 @@ img {
 					<form action="thingSelect.do" >
 						<input type="hidden" name="itemId" value="${list.thingId }" />
 						<button type="submit" class="btn btn-outline-info">자세히보기</button>
+						<button type="button" class="btn btn-outline-info" onclick="addCnt('${list.thingId}')">장바구니</button>
 					</form>
 				</div>
 				<div class="col-auto d-none d-lg-block">
@@ -74,7 +76,24 @@ img {
 			</div>
 		</div>
 	</c:forEach>
-	<div style="text-align: right;">
-		<button class="btn btn-outline-dark" type="button" onclick="location.href='thingForm.do'">등록</button>
-	</div>
 </div>
+<div style="text-align: right;">
+		<button class="btn btn-outline-dark" type="button" onclick="location.href='thingForm.do'">등록</button>
+</div>
+<script>
+function addCnt(thing_id) {
+	$.ajax({
+		url: "${pageContext.request.contextPath}/addCnt.do",
+		data: {
+			user_id: "${id}",
+			thing_id: thing_id,
+		},
+		success: function(){
+			location.href="thingList.do";
+		},
+		error: function(err) {
+			console.log(err);
+		}
+	});
+}
+</script>

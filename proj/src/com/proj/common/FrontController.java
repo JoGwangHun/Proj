@@ -23,8 +23,10 @@ import com.proj.member.memberJoin;
 import com.proj.member.memberJoinForm;
 import com.proj.member.memberLogin;
 import com.proj.member.memberLoginCheck;
+import com.proj.thing.web.AddCartCnt;
 import com.proj.thing.web.ThingDelete;
 import com.proj.thing.web.ThingForm;
+import com.proj.thing.web.ThingInsert;
 import com.proj.thing.web.ThingList;
 import com.proj.thing.web.ThingSelect;
 import com.proj.thing.web.ThingUpdate;
@@ -51,6 +53,10 @@ public class FrontController  extends HttpServlet {
 		// 상품 홈페이지
 		map.put("/thingList.do", new ThingList());
 		map.put("/thingSelect.do", new ThingSelect());
+		map.put("/thingDelete.do", new ThingDelete());
+		map.put("/thingUpdate.do", new ThingUpdate());
+		map.put("/thingForm.do", new ThingForm());
+		map.put("/thingInsert.do", new ThingInsert());
 
 		//회원 정보
 		map.put("/infoAlterForm.do", new infoAlterForm());
@@ -58,6 +64,7 @@ public class FrontController  extends HttpServlet {
 		map.put("/infoUpdatePwd.do", new infoUpdatePwd());
 		map.put("/infoUpdatePwdForm.do", new infoUpdatePwdForm());
 		map.put("/memberInfo.do", new memberInfo());
+<<<<<<< HEAD
 		map.put("/memberDelete.do", new memberDelete());
 		map.put("/memberDeleteForm.do", new memberDeleteForm());
 		
@@ -66,6 +73,11 @@ public class FrontController  extends HttpServlet {
 		map.put("/thingUpdate.do", new ThingUpdate());
 		map.put("/thingForm.do", new ThingForm());
 
+=======
+		
+		// 장바구니 카운트
+		map.put("/addCnt.do", new AddCartCnt());
+>>>>>>> branch 'master' of https://github.com/Narin88/Proj.git
 	}
 	
 	@Override
