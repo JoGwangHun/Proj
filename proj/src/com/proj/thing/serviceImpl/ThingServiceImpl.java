@@ -15,6 +15,45 @@ public class ThingServiceImpl extends DAO implements ThingService {
 	private ResultSet rs;
 	private String sql;
 
+	// cart안의 정보 갯수를 가져오기
+	public int getCountCart(String id) {
+		sql = "SELECT count(*) FROM cart WHERE user_id = ?";
+		int cnt = 0;
+		
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, id);
+			rs = psmt.executeQuery();
+			if(rs.next()) {
+				cnt = rs.getInt(1);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+		return cnt;
+	}
+	
+	// cart 정보 추가하는 메소드
+	public void addCartCnt(String user_id, int thing_id, int qty) {
+		sql = "INSERT INTO cart VALUES(?, ?, ?)";
+
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, user_id);
+			psmt.setInt(2, thing_id);
+			psmt.setInt(3, qty);
+
+			int r = psmt.executeUpdate();
+			System.out.println("저장: " + r);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+	}
+
 	@Override
 	public List<ThingVO> thingGetList() {
 		sql = "SELECT * FROM thing ORDER BY thing_kind";
@@ -77,8 +116,29 @@ public class ThingServiceImpl extends DAO implements ThingService {
 
 	@Override
 	public int insertThing(ThingVO vo) {
-		// TODO Auto-generated method stub
-		return 0;
+		sql = "INSERT INTO thing VALUES(thing_seq.nextval, ?, ?, ?, ?, ?, ?, ?, ?)";
+		int n = 0;
+
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, vo.getThingImage());
+			psmt.setString(2, vo.getThingName());
+			psmt.setInt(3, vo.getThingPrice());
+			psmt.setString(4, vo.getThingDesc());
+			psmt.setString(5, vo.getThingKind());
+			psmt.setString(6, vo.getThingImageDetail());
+			psmt.setString(7, vo.getThingDetailDesc());
+			psmt.setString(8, vo.getUserId());
+
+			n = psmt.executeUpdate();
+			priceInsert(vo);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+
+		return n;
 	}
 
 	@Override
@@ -150,6 +210,23 @@ public class ThingServiceImpl extends DAO implements ThingService {
 			psmt.setInt(3, vo.getPrice3());
 			psmt.setInt(4, vo.getPrice4());
 			psmt.setInt(5, vo.getThingId());
+
+			psmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
+	// 가격 히스토리 입력
+	private void priceInsert(ThingVO vo) {
+		sql = "INSERT INTO price_his VALUES (thing_seq.currval, ?, ?, ?, ?)";
+
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setInt(1, vo.getPrice1());
+			psmt.setInt(2, vo.getPrice2());
+			psmt.setInt(3, vo.getPrice3());
+			psmt.setInt(4, vo.getPrice4());
 
 			psmt.executeUpdate();
 		} catch (SQLException e) {

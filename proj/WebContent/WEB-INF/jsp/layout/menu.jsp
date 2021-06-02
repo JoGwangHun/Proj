@@ -9,9 +9,7 @@
     </a>
     <a class="py-2 d-none d-md-inline-block" href="index.do">홈페이지</a>
     <a class="py-2 d-none d-md-inline-block" href="thingList.do">상품리스트</a>
-    <a class="py-2 d-none d-md-inline-block" href="#">장바구니</a> 
-    
-    <a class="py-2 d-none d-md-inline-block" href="#">장바구니</a>
+    <a class="py-2 d-none d-md-inline-block" href="#">장바구니 <span class="badge bg-light text-dark">${cartCnt }</span></a> 
     
   
   </nav>

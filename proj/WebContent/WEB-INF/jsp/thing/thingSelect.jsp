@@ -31,10 +31,10 @@
 		data.addColumn('string', 'Day');
 		data.addColumn('number', 'Price');
 
-		let price1 = $("#price1_val").val();
-		let price2 = $("#price2_val").val();
-		let price3 = $("#price3_val").val();
-		let price4 = $("#price4_val").val();
+		let price1 = $("#price1").val();
+		let price2 = $("#price2").val();
+		let price3 = $("#price3").val();
+		let price4 = $("#price4").val();
 
 		price1 = parseInt(price1);
 		price2 = parseInt(price2);
@@ -72,17 +72,49 @@
 		let dayPrice2 = $("#dayPrice2").val();
 		let dayPrice3 = $("#dayPrice3").val();
 		let dayPrice4 = $("#dayPrice4").val();
-		let input_image = $("#input_image").val().substring(12);
-		let input_detail = $("#input_detail").val().substring(12);
-		let input_desc = $("#input_desc").val().substring(12);
 		let kind = $("#kind").val();
-
+		
+		var form = $('#picture')[0];
+	    var formData = new FormData(form);
+	    formData.append("fileObj", $("#thingImage")[0].files[0]);
+	    formData.append("fileObj2", $("#detailImage")[0].files[0]);
+	    formData.append("fileObj3", $("#detailDesc")[0].files[0]);
+	    
+	    let thingImage = $("#preview-image").attr("src").substring(7);
+	    let detailImage = $("#preview-image2").attr("src").substring(7);
+	    let detailDesc = $("#preview-image3").attr("src").substring(7);
+	    
+	    if(typeof $("#thingImage").get(0).files[0] != "undefined") {
+	    	thingImage = $("#thingImage").get(0).files[0].name;	
+	    }
+	    if(typeof $("#detailImage").get(0).files[0] != "undefined") {
+	    	detailImage = $("#detailImage").get(0).files[0].name;	
+	    }
+	    if(typeof $("#detailDesc").get(0).files[0] != "undefined") {
+	    	detailDesc = $("#detailDesc").get(0).files[0].name;
+	    }
+	    
 		if (str == "del") {
 			delFrm.submit();
 			return false;
 		}
 
 		if (str == "update") {
+		    $.ajax({
+			        url: '/proj/fileUpload',
+		            processData: false,
+		            contentType: false,
+		            data: formData,
+		            type: 'POST',
+		            success: function(result){
+		                alert("업로드 성공!!");
+		            },
+		            error: function(error) {
+		            	console.log(err)
+		            } 
+		     	
+		    });
+		    
 			updateFrm.chTitle.value = title;
 			updateFrm.chPrice.value = price;
 			updateFrm.chDesc.value = desc;
@@ -90,9 +122,9 @@
 			updateFrm.chDayPrice2.value = dayPrice2;
 			updateFrm.chDayPrice3.value = dayPrice3;
 			updateFrm.chDayPrice4.value = dayPrice4;
-			updateFrm.chImage.value = input_image;
-			updateFrm.chDetailImage.value = input_detail;
-			updateFrm.chDetailDesc.value = input_desc;
+			updateFrm.chImage.value = thingImage;
+			updateFrm.chDetailImage.value = detailImage;
+			updateFrm.chDetailDesc.value = detailDesc;
 			updateFrm.chKind.value = kind;
 
 			updateFrm.submit();
@@ -106,6 +138,9 @@
 <style>
 li {
 	float: left;
+}
+img {
+	max-width: 875px;
 }
 </style>
 
@@ -122,8 +157,8 @@ li {
 		<input type="hidden" name="chDayPrice3" />
 		<input type="hidden" name="chDayPrice4" />
 		<input type="hidden" name="chImage" />
-		<input type="hidden" name="chDetailImage" value="${vo.thingImageDetail }" />
-		<input type="hidden" name="chDetailDesc" value="${vo.thingDetailDesc }" />
+		<input type="hidden" name="chDetailImage" />
+		<input type="hidden" name="chDetailDesc" />
 		<input type="hidden" name="chKind" />
 	</form>
 	<form id="delFrm" action="thingDelete.do" method="post">
@@ -246,7 +281,7 @@ li {
 					</div>
 
 					<!-- Content Row -->
-
+					<form action="" id="picture" enctype="multipart/form-data">
 					<div class="row">
 						<!-- Pie Chart -->
 						<div class="col-xl-4 col-lg-5">
@@ -261,15 +296,11 @@ li {
 								<div class="card-body">
 									<div class="pb-2">
 										<c:if test="${id ne vo.userId }">
-											<img src="upload/${vo.thingImage }" width="380px"
-												height="350px" style="margin: -0.8em 0 3em 4em;" />
+											<img src="upload/${vo.thingImage }" width="380px" height="350px" style="margin: -0.8em 0 3em 4em;" />
 										</c:if>
 										<c:if test="${id eq vo.userId }">
-											<img src="upload/${vo.thingImage }" width="250px"
-												height="220px" style="margin: -0.8em 0 3em 4em;"
-												id="preview-image" />
-											<input type="file" accept="image/*" onchange="loadImg(this);"
-												id="input_image" />
+											<img src="upload/${vo.thingImage }" width="250px" height="220px" style="margin: -0.8em 0 3em 4em;" id="preview-image" />
+											<input type="file" accept="image/*" onchange="loadImg(this);" id="thingImage" name="thingImage" />
 										</c:if>
 									</div>
 								</div>
@@ -307,8 +338,7 @@ li {
 										<img src="upload/${vo.thingImageDetail }" />
 									</c:if>
 									<c:if test="${id eq vo.userId }">
-										<input type="file" accept="image/*" onchange="loadImg2(this);"
-											id="input_detail" />
+										<input type="file" accept="image/*" onchange="loadImg2(this);" id="detailImage" name="detailImage" />
 										<img src="upload/${vo.thingImageDetail }"
 											id="preview-image2" />
 									</c:if>
@@ -330,10 +360,8 @@ li {
 											<img src="upload/${vo.thingDetailDesc }" />
 										</c:if>
 										<c:if test="${id eq vo.userId }">
-											<input type="file" accept="image/*"
-												onchange="loadImg3(this);" id="input_desc" />
-											<img src="upload/${vo.thingDetailDesc }"
-												id="preview-image3" />
+											<input type="file" accept="image/*" onchange="loadImg3(this);" id="detailDesc" name="detailDesc" />
+											<img src="upload/${vo.thingDetailDesc }" id="preview-image3"/>
 										</c:if>
 									</div>
 								</div>
@@ -351,6 +379,7 @@ li {
 
 
 					</div>
+					</form>
 
 				</div>
 				<!-- /.container-fluid -->
