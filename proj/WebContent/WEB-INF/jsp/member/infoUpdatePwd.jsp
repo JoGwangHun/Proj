@@ -48,6 +48,21 @@ rel='stylesheet' type='text/css'>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
+<script>
+	function passwordCheck(){
+		if(frm.UdPwd1.value==""){
+			alert("현재 비밀번호를 입력해 주세요.");
+			frm.UdPwd1.focus();
+			return;
+		}
+		if(frm.UdPwd2.value==""){
+			alert("새 비밀번호를 입력해 주세요.");
+			frm.UdPwd2.focus();
+			return;
+		}
+		frm.submit();
+	}
+</script>
 <body>
 	<div class="sidebarA">
 	<ul class="ul1">
@@ -61,17 +76,20 @@ rel='stylesheet' type='text/css'>
     	<form id="frm" action="infoUpdatePwdForm.do" method="post">	
    	 	<table  width="500px" height="300px">
    	 		<tr>
+   	 			<th colspan="2"> ※※※   비밀번호 변경   ※※※ </th>	
+   	 		</tr>
+   	 		<tr>
    	 			<th> 아이디 </th>	 <td>${id }</td>
    	 		</tr>
-   	 		<!--  <tr>
+   	 		  <tr>
    	 			<th>현재 비밀번호  :</th>	<td><input type="password" placeholder="현재 비밀번호 입력" id="UdPwd1" name="UdPwd1"></td>
    	 		</tr>
-   	 		-->
+   	 		
    	 		<tr>
    	 			<th>변경할 비밀번호 :</th>	<td><input type="password" placeholder="변경할 비밀번호 입력" id="UdPwd2" name="UdPwd2"></td>
    	 		</tr>
    	 		<tr>
-   	 			<td colspan="2" rowspan="2"><input type="submit" value="변경하기"></td>
+   	 			<td colspan="2" rowspan="2"><button type="button" onclick="passwordCheck();">변경하기</button></td>
    	 		</tr>
    	 	</table>
    	 	</form>	

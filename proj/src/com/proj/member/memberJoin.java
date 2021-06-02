@@ -36,7 +36,9 @@ public class memberJoin implements DbCommand {
 			
 			session.setAttribute("id", id);			
 			session.setAttribute("vo", vo);
+
 			session.setAttribute("id", vo.getMemberId());
+			request.setAttribute("vo", vo);
 			request.setAttribute("vo", vo);
 			
 			
