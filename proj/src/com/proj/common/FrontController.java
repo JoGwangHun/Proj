@@ -1,7 +1,6 @@
 package com.proj.common;
 
 import java.io.IOException;
-
 import java.util.HashMap;
 
 import javax.servlet.RequestDispatcher;
@@ -17,8 +16,10 @@ import com.proj.info.infoAlter;
 import com.proj.info.infoAlterForm;
 import com.proj.info.infoUpdatePwd;
 import com.proj.info.infoUpdatePwdForm;
-import com.proj.member.memberInfo;
 import com.proj.member.MemberLogOut;
+import com.proj.member.memberDelete;
+import com.proj.member.memberDeleteForm;
+import com.proj.member.memberInfo;
 import com.proj.member.memberJoin;
 import com.proj.member.memberJoinForm;
 import com.proj.member.memberLogin;
