@@ -304,12 +304,12 @@ li {
 								</div>
 								<div class="card-body">
 									<c:if test="${id ne vo.userId }">
-										<img src="upload/detail/${vo.thingImageDetail }" />
+										<img src="upload/${vo.thingImageDetail }" />
 									</c:if>
 									<c:if test="${id eq vo.userId }">
 										<input type="file" accept="image/*" onchange="loadImg2(this);"
 											id="input_detail" />
-										<img src="upload/detail/${vo.thingImageDetail }"
+										<img src="upload/${vo.thingImageDetail }"
 											id="preview-image2" />
 									</c:if>
 								</div>
@@ -327,12 +327,12 @@ li {
 								<div class="card-body">
 									<div class="prod_spec">
 										<c:if test="${id ne vo.userId }">
-											<img src="upload/desc/${vo.thingDetailDesc }" />
+											<img src="upload/${vo.thingDetailDesc }" />
 										</c:if>
 										<c:if test="${id eq vo.userId }">
 											<input type="file" accept="image/*"
 												onchange="loadImg3(this);" id="input_desc" />
-											<img src="upload/desc/${vo.thingDetailDesc }"
+											<img src="upload/${vo.thingDetailDesc }"
 												id="preview-image3" />
 										</c:if>
 									</div>

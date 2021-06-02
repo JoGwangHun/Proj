@@ -48,7 +48,7 @@ function imageBtnFnc(){
 					<!-- Begin Page Content -->
 					<div class="container-fluid">
 						<div>
-						<form action="#" method="post" id="spec">
+						<form action="thingInsert.do" method="post" id="spec">
 							<div style="text-align: center;">
 								<button class="btn btn-outline-success" type="button" onclick="imageBtnFnc()">이미지업로드</button>
 								<input class="btn btn-outline-danger" type="reset" value="초기화" />

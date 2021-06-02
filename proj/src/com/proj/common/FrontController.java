@@ -21,6 +21,7 @@ import com.proj.member.memberLogin;
 import com.proj.member.memberLoginCheck;
 import com.proj.thing.web.ThingDelete;
 import com.proj.thing.web.ThingForm;
+import com.proj.thing.web.ThingInsert;
 import com.proj.thing.web.ThingList;
 import com.proj.thing.web.ThingSelect;
 import com.proj.thing.web.ThingUpdate;
@@ -52,12 +53,10 @@ public class FrontController  extends HttpServlet {
 		map.put("/infoUpdatePwd.do", new infoUpdatePwd());
 		map.put("/infoUpdatePwdForm.do", new infoUpdatePwdForm());
 		map.put("/memberInfo.do", new memberInfo());
-
-		map.put("/thingDelete.do", new ThingDelete());
-
 		map.put("/thingDelete.do", new ThingDelete());
 		map.put("/thingUpdate.do", new ThingUpdate());
 		map.put("/thingForm.do", new ThingForm());
+		map.put("/thingInsert.do", new ThingInsert());
 
 	}
 	
