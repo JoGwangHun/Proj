@@ -11,10 +11,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.proj.info.infoAlter;
+import com.proj.info.infoAlterForm;
 import com.proj.info.infoUpdatePwd;
 import com.proj.info.infoUpdatePwdForm;
 import com.proj.member.memberInfo;
 import com.proj.member.MemberLogOut;
+import com.proj.member.memberDelete;
+import com.proj.member.memberDeleteForm;
 import com.proj.member.memberJoin;
 import com.proj.member.memberJoinForm;
 import com.proj.member.memberLogin;
@@ -49,12 +53,15 @@ public class FrontController  extends HttpServlet {
 		map.put("/thingSelect.do", new ThingSelect());
 
 		//회원 정보
+		map.put("/infoAlterForm.do", new infoAlterForm());
+		map.put("/infoAlter.do", new infoAlter());
 		map.put("/infoUpdatePwd.do", new infoUpdatePwd());
 		map.put("/infoUpdatePwdForm.do", new infoUpdatePwdForm());
 		map.put("/memberInfo.do", new memberInfo());
-
+		map.put("/memberDelete.do", new memberDelete());
+		map.put("/memberDeleteForm.do", new memberDeleteForm());
+		
 		map.put("/thingDelete.do", new ThingDelete());
-
 		map.put("/thingDelete.do", new ThingDelete());
 		map.put("/thingUpdate.do", new ThingUpdate());
 		map.put("/thingForm.do", new ThingForm());

@@ -49,18 +49,25 @@ rel='stylesheet' type='text/css'>
 <title>Insert title here</title>
 </head>
 <script>
-	function passwordCheck(){
-		if(frm.UdPwd1.value==""){
-			alert("현재 비밀번호를 입력해 주세요.");
-			frm.UdPwd1.focus();
+	function deleteCheck(){
+		if(frm.id.value==""){
+			alert("아이디를 입력해 주세요.");
+			frm.id.focus();
 			return;
 		}
-		if(frm.UdPwd2.value==""){
-			alert("새 비밀번호를 입력해 주세요.");
-			frm.UdPwd2.focus();
+		if(frm.pwd.value==""){
+			alert(" 비밀번호를 입력해 주세요.");
+			frm.pwd.focus();
 			return;
 		}
-		frm.submit();
+		let delChk =confirm("정말로 삭제 하시겠습니까?");
+		if(delChk==true){
+			frm.submit();
+		}else{
+			alert("취소되었습니다.");
+		}
+	
+		
 	}
 </script>
 <body>
@@ -74,23 +81,20 @@ rel='stylesheet' type='text/css'>
     </ul>
     </div>
     <div class="contentA">
-    	<form id="frm" action="infoUpdatePwdForm.do" method="post">	
+    	<form id="frm" action="memberDeleteForm.do" method="post">	
    	 	<table  width="500px" height="300px">
    	 		<tr>
-   	 			<th colspan="2"> ※※※   비밀번호 변경   ※※※ </th>	
+   	 			<th colspan="2"> ※※※   회원 탈퇴   ※※※ </th>	
    	 		</tr>
-   	 		<tr>
-   	 			<th> 아이디 </th>	 <td>${id }</td>
+   	 		 <tr>
+   	 			<th> 아이디  :</th>	<td><input type="text" placeholder="아이디 입력" id="id" name="id"></td>
    	 		</tr>
    	 		  <tr>
-   	 			<th>현재 비밀번호  :</th>	<td><input type="password" placeholder="현재 비밀번호 입력" id="UdPwd1" name="UdPwd1"></td>
+   	 			<th> 비밀번호  :</th>	<td><input type="password" placeholder="현재 비밀번호 입력" id="pwd" name="pwd"></td>
    	 		</tr>
    	 		
    	 		<tr>
-   	 			<th>변경할 비밀번호 :</th>	<td><input type="password" placeholder="변경할 비밀번호 입력" id="UdPwd2" name="UdPwd2"></td>
-   	 		</tr>
-   	 		<tr>
-   	 			<td colspan="2" rowspan="2"><button type="button" onclick="passwordCheck();">변경하기</button></td>
+   	 			<td colspan="2" rowspan="2"><button type="button" onclick="deleteCheck();">회원 탈퇴</button></td>
    	 		</tr>
    	 	</table>
    	 	</form>	

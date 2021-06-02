@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <script>
-	alert("입력한 정보가 맞지 않습니다!");
-	location.href="memberLogin.do"
+	alert("비밀번호 변경이 실패하였습니다!");
+	location.href="infoUpdatePwd.do"
 </script>

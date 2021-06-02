@@ -92,10 +92,6 @@
 		});
 	});
 
-	tel.onkeyup=function(){
-		
-		alert("숫자만 입력가능");
-	}
 	
 	
   </script>

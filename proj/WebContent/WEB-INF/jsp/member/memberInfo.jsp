@@ -49,9 +49,9 @@ rel='stylesheet' type='text/css'>
 <body>
 	<div class="sidebarA">
 	<ul class="ul1">
-    <li class="li1"><a href="#" class="btn">회원정보 변경</a></li>
+    <li class="li1"><a href="infoAlter.do" class="btn">회원정보 변경</a></li>
   	<li class="li1"><a href="infoUpdatePwd.do" class="btn">비밀번호 변경</a></li>
-    <li class="li1"><a href="#" class="btn">회원 탈퇴</a>
+    <li class="li1"><a href="memberDelete.do" class="btn">회원 탈퇴</a>
     </li>
     </ul>
     </div>

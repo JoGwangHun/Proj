@@ -4,6 +4,7 @@ import java.sql.PreparedStatement;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.proj.common.DAO;
@@ -14,17 +15,42 @@ public class MemberServiceImpl extends DAO implements MemberService{
 	ResultSet rs;
 	String sql;
 	
-	//비밀번호 변경
-	public MemberVO updatePwd(MemberVO vo) {
-		sql="update  member set member_pwd=? where member_id=? and member_pwd=?";
+	//회원정보 변경
+	public int infoAlter(String email,String tel,String id) {
+		sql="update member set member_email=? , member_tel=? where member_id=?";
+		int r=0;
 		try {
 			psmt=conn.prepareStatement(sql);
-			psmt.setString(1, vo.getMemberPwd());
-			psmt.setString(2, vo.getMemberPwd());
+			psmt.setString(1, email);
+			psmt.setString(2, tel);
+			psmt.setString(3, id);
+			r=psmt.executeUpdate();
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		}finally {
+			close();
+		}
+		return r;
+	}
+
+	
+	//비밀번호 변경
+	public int updatePwd(String id,String password, String newPassword) {
+		sql="update  member set member_pwd=? where member_id=? and member_pwd=?";
+		int r=0;
+		try {
+			psmt=conn.prepareStatement(sql);
+			psmt.setString(1, newPassword);
+			psmt.setString(2, id);
+			psmt.setString(3, password);
+			r=psmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
+		}finally {
+			close();
 		}
-		return null;
+		return r;
 	}
 	
 	//id ,passwd를 체크해주는 
@@ -120,8 +146,20 @@ public class MemberServiceImpl extends DAO implements MemberService{
 
 	@Override
 	public int deleteMember(MemberVO vo) {
-	
-		return 0;
+		int r=0;
+		sql="delete from member where member_id=? and member_pwd=?";
+		try {
+			psmt=conn.prepareStatement(sql);
+			psmt.setString(1, vo.getMemberId());
+			psmt.setString(2, vo.getMemberPwd());
+			r=psmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close();
+		}
+		return r;
 	}
 
 	

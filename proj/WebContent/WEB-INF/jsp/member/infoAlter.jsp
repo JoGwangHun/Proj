@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+	<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -48,19 +48,25 @@ rel='stylesheet' type='text/css'>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
+<style>
+.necessary{font-size: small; color:red;}
+ #td1{
+ 	text-align:left;
+ }
+</style>
 <script>
-	function passwordCheck(){
-		if(frm.UdPwd1.value==""){
-			alert("현재 비밀번호를 입력해 주세요.");
-			frm.UdPwd1.focus();
-			return;
+	function infoAlterChk(){
+		if(frm.email.value=="${rvo.memberEmail}" && frm.tel.value=="${rvo.memberTel}"){
+			alert("변경할 사항을 수정해주세요!");
+		}else{
+			
+		let Check =confirm("정말로 수정 하시겠습니까?");
+		if(Check==true){
+			frm.submit();
+		}else{
+			alert("취소되었습니다.");
 		}
-		if(frm.UdPwd2.value==""){
-			alert("새 비밀번호를 입력해 주세요.");
-			frm.UdPwd2.focus();
-			return;
 		}
-		frm.submit();
 	}
 </script>
 <body>
@@ -74,23 +80,23 @@ rel='stylesheet' type='text/css'>
     </ul>
     </div>
     <div class="contentA">
-    	<form id="frm" action="infoUpdatePwdForm.do" method="post">	
+    	<form id="frm" action="infoAlterForm.do" method="post">	
    	 	<table  width="500px" height="300px">
    	 		<tr>
-   	 			<th colspan="2"> ※※※   비밀번호 변경   ※※※ </th>	
+   	 			<th colspan="3"> ※※※   회원 정보 변경   ※※※ </th>	
    	 		</tr>
-   	 		<tr>
-   	 			<th> 아이디 </th>	 <td>${id }</td>
+   	 		 <tr>
+   	 			<th > 이름 </th>	<td id="td1">${rvo.memberName}</td><td ><span class = 'necessary' >※ 이름은 변경이 불가능합니다.</span></td>
    	 		</tr>
    	 		  <tr>
-   	 			<th>현재 비밀번호  :</th>	<td><input type="password" placeholder="현재 비밀번호 입력" id="UdPwd1" name="UdPwd1"></td>
+   	 			<th> 이메일 </th>	<td  id="td1"><input type="text"  id="email" name="email" value="${rvo.memberEmail }"></td>
+   	 		</tr>
+   	 		<tr>
+   	 			<th> 전화번호 </th>	<td  id="td1"><input type="text"  onKeyup="this.value=this.value.replace(/[^0-9]/g,'');" id="tel" name="tel" value="${rvo.memberTel }"></td> <td ><span class = 'necessary' >※ 숫자만 입력이 가능합니다.</span></td>
    	 		</tr>
    	 		
    	 		<tr>
-   	 			<th>변경할 비밀번호 :</th>	<td><input type="password" placeholder="변경할 비밀번호 입력" id="UdPwd2" name="UdPwd2"></td>
-   	 		</tr>
-   	 		<tr>
-   	 			<td colspan="2" rowspan="2"><button type="button" onclick="passwordCheck();">변경하기</button></td>
+   	 			<td colspan="2" rowspan="2"><button type="button" onclick="infoAlterChk();">정보 수정</button></td>
    	 		</tr>
    	 	</table>
    	 	</form>	
