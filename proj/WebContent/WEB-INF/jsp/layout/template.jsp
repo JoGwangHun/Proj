@@ -45,8 +45,8 @@
 <body>
 	<tiles:insertAttribute name="menu">
 	</tiles:insertAttribute>
-	<tiles:insertAttribute name="menu2">
-	</tiles:insertAttribute>
+	<%-- <tiles:insertAttribute name="menu2">
+	</tiles:insertAttribute>--%>
 
 	<%-- 	<tiles:insertAttribute name="head">
 	</tiles:insertAttribute> --%>

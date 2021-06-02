@@ -10,7 +10,23 @@
     <a class="py-2 d-none d-md-inline-block" href="index.do">홈페이지</a>
     <a class="py-2 d-none d-md-inline-block" href="thingList.do">상품리스트</a>
     <a class="py-2 d-none d-md-inline-block" href="#">장바구니 <span class="badge bg-light text-dark">${cartCnt }</span></a> 
-    
+    <c:choose>
+    	<c:when test="${!empty id }">
+    		<nav id="nav1">	
+    			<a id="a1" href="#">${id }님 </a>
+    			<a id="a1" href="memberInfo.do">회원 정보</a>
+    			<a id="a1"  href="memberLogOut.do">LogOut</a>
+    			<div class="animation start-home"></div>
+    		</nav>
+    	</c:when>
+    	<c:otherwise>
+    		<nav id="nav2">	
+    			<a id="a2" href="memberLogin.do">로그인 </a>
+    			<a id="a2"  href="memberJoinForm.do">회원가입</a>
+    			<div class="animation start-home"></div>
+    		</nav>
+ 	   </c:otherwise>
+    </c:choose>
   
   </nav>
 </header>
