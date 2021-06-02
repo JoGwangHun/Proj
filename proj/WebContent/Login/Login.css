@@ -1,5 +1,6 @@
 #nav1 {
-	float:right;
+	position:fixed;
+	left:0;	
 	margin: 27px auto 0;
 	position: relative;
 	width: 310px;
@@ -62,9 +63,9 @@
 
 <!--    -->
 #nav2 {
-	float:right;
+	position:fixed;
+	right:0;	
 	margin: 27px auto 0;
-	position: relative;
 	width: 210px;
 	height: 50px;
 	background-color: #34495e;
