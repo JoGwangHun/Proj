@@ -45,7 +45,6 @@ public class FrontController  extends HttpServlet {
 		map.put("/memberJoin.do", new memberJoin());
 		map.put("/memberLogin.do", new memberLogin());
 		map.put("/memberLogOut.do", new MemberLogOut());
-
 		map.put("/memberLoginCheck.do", new memberLoginCheck());
 		map.put("/memberLogOut.do", new MemberLogOut());
 		
@@ -65,16 +64,18 @@ public class FrontController  extends HttpServlet {
 		map.put("/infoUpdatePwdForm.do", new infoUpdatePwdForm());
 		map.put("/memberInfo.do", new memberInfo());
 
+
 		map.put("/memberDelete.do", new memberDelete());
 		map.put("/memberDeleteForm.do", new memberDeleteForm());
 		
+
 		map.put("/thingDelete.do", new ThingDelete());
 		map.put("/thingDelete.do", new ThingDelete());
 		map.put("/thingUpdate.do", new ThingUpdate());
 		map.put("/thingForm.do", new ThingForm());
 
 
-		
+
 		// 장바구니 카운트
 		map.put("/addCnt.do", new AddCartCnt());
 	}
