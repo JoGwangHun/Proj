@@ -53,6 +53,7 @@
 	text-anchor: middle;
 	-webkit-user-select: none;
 	-moz-user-select: none;
+	-ms-user-select: none;
 	user-select: none;
 }
 
@@ -68,6 +69,7 @@
 <body>
 	<tiles:insertAttribute name="menu">
 	</tiles:insertAttribute>
+	
 	<%-- <tiles:insertAttribute name="menu2">
 	</tiles:insertAttribute>--%>
 
