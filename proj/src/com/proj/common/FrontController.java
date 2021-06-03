@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.proj.cart.web.AddCartCnt;
 import com.proj.cart.web.CartList;
+import com.proj.cart.web.DeleteCartList;
 import com.proj.info.infoAlter;
 import com.proj.info.infoAlterForm;
 import com.proj.info.infoUpdatePwd;
@@ -28,6 +29,7 @@ import com.proj.thing.web.ThingDelete;
 import com.proj.thing.web.ThingForm;
 import com.proj.thing.web.ThingInsert;
 import com.proj.thing.web.ThingList;
+import com.proj.thing.web.ThingListPaging;
 import com.proj.thing.web.ThingSelect;
 import com.proj.thing.web.ThingUpdate;
 
@@ -56,6 +58,7 @@ public class FrontController  extends HttpServlet {
 		map.put("/thingUpdate.do", new ThingUpdate());
 		map.put("/thingForm.do", new ThingForm());
 		map.put("/thingInsert.do", new ThingInsert());
+		map.put("/thingListPaging.do", new ThingListPaging());
 
 		//회원 정보
 		map.put("/memberDelete.do", new memberDelete());
@@ -69,6 +72,7 @@ public class FrontController  extends HttpServlet {
 		// 장바구니
 		map.put("/addCnt.do", new AddCartCnt());
 		map.put("/cartList.do", new CartList());
+		map.put("/deleteCartList.do", new DeleteCartList());
 	}
 	
 	@Override

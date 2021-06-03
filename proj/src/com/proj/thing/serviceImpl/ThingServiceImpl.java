@@ -16,6 +16,55 @@ public class ThingServiceImpl extends DAO implements ThingService {
 	private ResultSet rs;
 	private String sql;
 
+	// 페이징
+	public List<ThingVO> thingListPaging(int page) {
+		sql = "SELECT m.membeR_name, b.* from (select rownum rn, a.* from (select * FROM thing n order by user_id) a) b, member m WHERE (b.user_id = m.member_id) AND (b.rn between ? and ?)";
+		List<ThingVO> list = new ArrayList<ThingVO>();
+
+		int firstCnt, lastCnt = 0;
+		firstCnt = (page - 1) * 8 + 1; // 1
+		lastCnt = (page * 8); // 10
+
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setInt(1, firstCnt);
+			psmt.setInt(2, lastCnt);
+			rs = psmt.executeQuery();
+
+			while (rs.next()) {
+				ThingVO vo = new ThingVO();
+				vo.setThingId(rs.getInt("thing_id"));
+				vo.setThingImage(rs.getString("thing_image"));
+				vo.setThingName(rs.getString("thing_name"));
+				vo.setThingPrice(rs.getInt("thing_price"));
+				vo.setThingDesc(rs.getString("thing_desc"));
+				vo.setThingKind(rs.getString("thing_kind"));
+
+				list.add(vo);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+		return list;
+	}
+
+	// 장바구니 초기화
+	public void deleteCartList(String user_id) {
+		sql = "DELETE FROM cart WHERE user_id=?";
+
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, user_id);
+			psmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+	}
+
 	// 가격 총합
 	public int getTotalPrice(String user_id) {
 		sql = "select sum(total) from (SELECT t.user_id, t.thing_id, t.thing_name, t.thing_price, sum(c.count) AS cnt, (t.thing_price * sum(c.count)) AS total\r\n"
@@ -100,8 +149,7 @@ public class ThingServiceImpl extends DAO implements ThingService {
 			psmt.setInt(2, thing_id);
 			psmt.setInt(3, qty);
 
-			int r = psmt.executeUpdate();
-			System.out.println("저장: " + r);
+			psmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
