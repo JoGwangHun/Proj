@@ -6,7 +6,7 @@ import com.proj.member.MemberVO;
 
 public interface MemberService {
 	
-	List<MemberVO> selectMemberList();
+	List<MemberVO> MemberList();
 	MemberVO selectMember();
 	public int insertMember(MemberVO vo);
 	public int updateMember(MemberVO vo);

@@ -10,6 +10,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.proj.admin.AdminMemberDel;
+import com.proj.admin.AdminMemberUd;
+import com.proj.admin.AdminMemberUdForm;
+import com.proj.admin.adminMember;
+import com.proj.admin.adminMemberList;
 import com.proj.cart.web.AddCartCnt;
 import com.proj.cart.web.CartList;
 import com.proj.cart.web.DeleteCartList;
@@ -73,6 +78,14 @@ public class FrontController  extends HttpServlet {
 		map.put("/addCnt.do", new AddCartCnt());
 		map.put("/cartList.do", new CartList());
 		map.put("/deleteCartList.do", new DeleteCartList());
+		
+		//관리자
+		map.put("/AdminMemberDel.do", new AdminMemberDel());
+		map.put("/AdminMemberUd.do", new AdminMemberUd());
+		map.put("/AdminMemberUdForm.do", new AdminMemberUdForm());
+		map.put("/adminMember.do", new adminMember());
+		map.put("/adminMemberList.do", new adminMemberList());
+		
 	}
 	
 	@Override

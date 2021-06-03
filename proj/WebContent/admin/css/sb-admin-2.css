@@ -1507,10 +1507,10 @@ pre code {
 .table-sm th,
 .table-sm td {
   padding: 0.3rem;
-}
+} 
 
 .table-bordered {
-  border: 1px solid #e3e6f0;
+ border: 1px solid #e3e6f0;
 }
 
 .table-bordered th,

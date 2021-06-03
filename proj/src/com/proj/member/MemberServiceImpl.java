@@ -15,6 +15,21 @@ public class MemberServiceImpl extends DAO implements MemberService{
 	ResultSet rs;
 	String sql;
 	
+	public int AdminDel(MemberVO vo) {
+		sql="delete from member where member_id=?";
+		int r=0;
+		try {
+			psmt=conn.prepareStatement(sql);
+			psmt.setString(1, vo.getMemberId());
+			r=psmt.executeUpdate();
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		}
+		return r;
+		
+	}
+	
 	//회원정보 변경
 	public int infoAlter(String email,String tel,String id) {
 		sql="update member set member_email=? , member_tel=? where member_id=?";
@@ -104,9 +119,29 @@ public class MemberServiceImpl extends DAO implements MemberService{
 	
 	
 	@Override
-	public List<MemberVO> selectMemberList() {
-		
-		return null;
+	public List<MemberVO> MemberList() {
+		List<MemberVO> list= new ArrayList<MemberVO>();
+		sql="select * from member order by 1";
+		try {
+			psmt=conn.prepareStatement(sql);
+			rs=psmt.executeQuery();
+			while(rs.next()) {
+				MemberVO vo= new MemberVO();
+				vo.setMemberId(rs.getString("member_id"));
+				vo.setMemberPwd(rs.getString("member_pwd"));
+				vo.setMemberName(rs.getString("member_name"));
+				vo.setMemberEmail(rs.getString("member_email"));
+				vo.setMemberTel(rs.getString("member_tel"));
+				list.add(vo);
+			}
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		}finally {
+			close();
+		}
+				
+		return list;
 	}
 
 	@Override
@@ -137,11 +172,28 @@ public class MemberServiceImpl extends DAO implements MemberService{
 		
 		return r;
 	}
-
+	
+	
 	@Override
 	public int updateMember(MemberVO vo) {
+		sql="update member set member_pwd=?, member_name=?, member_email=?,member_tel=? where member_id=?";
+		int r=0;
+		 	try {
+				psmt=conn.prepareStatement(sql);
+				psmt.setString(1, vo.getMemberPwd());
+				psmt.setString(2, vo.getMemberName());
+				psmt.setString(3, vo.getMemberEmail());
+				psmt.setString(4, vo.getMemberTel());
+				psmt.setString(5, vo.getMemberId());
+				r=psmt.executeUpdate();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}finally {
+				close();
+			}
+		 	
 		
-		return 0;
+		return r;
 	}
 
 	@Override
