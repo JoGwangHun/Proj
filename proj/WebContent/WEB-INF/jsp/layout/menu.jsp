@@ -12,10 +12,11 @@
     <a class="py-2 d-none d-md-inline-block" href="cartList.do">장바구니 <span class="badge bg-light text-dark">${cartCnt }</span></a> 
     <c:choose>
     	<c:when test="${!empty id || id eq 'admin'}">
-    		<nav id="nav1">	
-    			<a id="a1" href="#">${id }님 </a>
-    			<a id="a1" href="#">회원 관리</a>
-    			<a id="a1" href="memberInfo.do">회원 정보</a>
+    		<nav id="nav3">	
+    			<a id="a3" href="#">${id }님 </a>
+    			<a id="a3" href="adminMember.do">회원 관리</a>
+    			<a id="a3" href="#">판매 관리</a>
+    			<a id="a3"  href="memberLogOut.do">LogOut</a>
     			<!--  <a id="a1"  href="memberLogOut.do">LogOut</a>-->
     			<div class="animation start-home"></div>
     		</nav>
