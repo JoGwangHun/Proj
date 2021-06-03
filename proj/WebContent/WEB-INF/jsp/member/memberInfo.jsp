@@ -6,6 +6,7 @@
 <link href='https://fonts.googleapis.com/css?family=Oswald:300' 
 rel='stylesheet' type='text/css'>
 <style>
+  body{background-color: #F5F6F7;}
 * {
 	-webkit-transition-property: all;
 	-webkit-transition-duration: .2s;
