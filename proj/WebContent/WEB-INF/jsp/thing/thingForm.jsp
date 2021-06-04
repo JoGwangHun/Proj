@@ -3,11 +3,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <meta charset="UTF-8" />
 <title>Insert title here</title>
-<script></script>
 <script>
 	//파일 업로드
 	function imageBtnFnc() {
@@ -317,12 +314,8 @@
 						</div>
 					</form>
 				</div>
-				<!-- /.container-fluid -->
 			</div>
-			<!-- End of Main Content -->
 		</div>
-		<!-- End of Content Wrapper -->
 	</div>
-	<!-- End of Page Wrapper -->
 </body>
 </html>

@@ -182,9 +182,5 @@ function jusoCallBack(roadFullAddr){
 			</div>
 		</div>
 	</div>
-	<script>
-		// 결제 함수
-		
-	</script>
 </body>
 </html>

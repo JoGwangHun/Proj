@@ -9,12 +9,56 @@ import java.util.List;
 import com.proj.common.DAO;
 import com.proj.thing.service.ThingService;
 import com.proj.thing.vo.CartVO;
+import com.proj.thing.vo.CommentVO;
 import com.proj.thing.vo.ThingVO;
 
 public class ThingServiceImpl extends DAO implements ThingService {
 	private PreparedStatement psmt;
 	private ResultSet rs;
 	private String sql;
+	
+	// 댓글 리스트 가져오기
+	public List<CommentVO> commentGetList(int thing_id) {
+		sql = "SELECT * FROM comments WHERE thing_id=?";
+		List<CommentVO> list = new ArrayList<CommentVO>();
+		
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setInt(1, thing_id);
+			rs = psmt.executeQuery();
+			while(rs.next()) {
+				CommentVO vo = new CommentVO();
+				vo.setUserId(rs.getString("user_id"));
+				vo.setCommentDate(rs.getString("comment_date"));
+				vo.setContents(rs.getString("contents"));
+				
+				list.add(vo);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+		return list;
+	}
+	
+	// 댓글 Insert
+	public void commentInsert(String user_id, String comment, int thing_id) {
+		sql = "INSERT INTO comments VALUES(?, to_char(sysdate, 'yyyy-MM-dd hh24:mi:ss'), ?, ?)";
+		
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, user_id);
+			psmt.setString(2, comment);
+			psmt.setInt(3, thing_id);
+			
+			psmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close();
+		}
+	}
 
 	// 페이징
 	public List<ThingVO> thingListPaging(int page) {
@@ -69,8 +113,8 @@ public class ThingServiceImpl extends DAO implements ThingService {
 	public int getTotalPrice(String user_id) {
 		sql = "select sum(total) from (SELECT t.user_id, t.thing_id, t.thing_name, t.thing_price, sum(c.count) AS cnt, (t.thing_price * sum(c.count)) AS total\r\n"
 				+ "FROM thing t, cart c\r\n"
-				+ "WHERE t .thing_id = c.thing_id AND t.user_id = c.user_id AND t.user_id = ?\r\n"
-				+ "GROUP BY t.user_id, t.thing_id, t.thing_name, t.thing_price, c.count) group by user_id";
+				+ "WHERE t .thing_id = c.thing_id AND c.user_id = ?\r\n"
+				+ "GROUP BY t.user_id, t.thing_id, t.thing_name, t.thing_price, c.count)";
 		int total = 0;
 
 		try {
@@ -89,10 +133,10 @@ public class ThingServiceImpl extends DAO implements ThingService {
 
 	// cartList가져오기
 	public List<CartVO> getCartList(String user_id) {
-		sql = "SELECT t.user_id, t.thing_id, t.thing_name, t.thing_price, sum(c.count) AS cnt, (t.thing_price * sum(c.count)) AS total\r\n"
+		sql = "SELECT c.user_id, t.thing_id, t.thing_name, t.thing_price, sum(c.count) AS cnt, (t.thing_price * sum(c.count)) AS total\r\n"
 				+ "FROM thing t, cart c\r\n"
-				+ "WHERE t .thing_id = c.thing_id AND t.user_id = c.user_id AND t.user_id = ?\r\n"
-				+ "GROUP BY t.user_id, t.thing_id, t.thing_name, t.thing_price, c.count";
+				+ "WHERE t .thing_id = c.thing_id AND c.user_id = ?\r\n"
+				+ "GROUP BY C.user_id, t.thing_id, t.thing_name, t.thing_price, c.count";
 		List<CartVO> list = new ArrayList<CartVO>();
 
 		try {
