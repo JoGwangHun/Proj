@@ -77,7 +77,7 @@
             <li class="nav-item">
                 <a class="nav-link" href="#">
                     <i class="fas fa-fw fa-chart-area"></i>
-                    <span>판매 상품</span></a>
+                    <span>상품 관리</span></a>
             </li>
 
             <!-- Nav Item - Tables -->

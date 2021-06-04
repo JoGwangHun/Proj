@@ -29,6 +29,7 @@ import com.proj.member.memberJoin;
 import com.proj.member.memberJoinForm;
 import com.proj.member.memberLogin;
 import com.proj.member.memberLoginCheck;
+import com.proj.serviceCenter.serviceCenter;
 import com.proj.thing.web.ThingDelete;
 import com.proj.thing.web.ThingForm;
 import com.proj.thing.web.ThingInsert;
@@ -81,6 +82,9 @@ public class FrontController  extends HttpServlet {
 		map.put("/AdminMemberUdForm.do", new AdminMemberUdForm());
 		map.put("/adminMember.do", new adminMember());
 		map.put("/adminMemberList.do", new adminMemberList());
+		
+		//고객센터
+		map.put("/serviceCenter.do", new serviceCenter());
 		
 	}
 	

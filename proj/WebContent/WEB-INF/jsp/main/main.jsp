@@ -23,28 +23,22 @@ width: auto; height: auto; z-index: -100;
 background-size: cover;
 
 }
+.body1{
+	width:100%;
+}
     </style>
+
+
+
  </head>
  
- 
+
  
   <body class="body1"> 
   <!--background 전체 -->
 <video width="320" height="240" autoplay class="preview" muted loop>
 <source src="mp4/background.mp4" type="video/mp4">
 </video>
-
-<section class="example" id="ex2">
-		<header>
-			<h1 class="h11">: D A N A W A A : </h1>
-		</header>
-		<ul class="social">
-			<li><a id="aId" href="#" aria-hidden="true" class="icon-twitter" >BEST</a></li>
-			<!-- <li><a href="#" aria-hidden="true" class="icon-pinterest"></a></li> -->
-			<li><a id="aId" href="#" aria-hidden="true" class="icon-github">???</a></li>
-			<li><a id="aId" href="#" aria-hidden="true" class="icon-flickr">???</a></li>
-		</ul>
-	</section>
 
 </body>
 </html>

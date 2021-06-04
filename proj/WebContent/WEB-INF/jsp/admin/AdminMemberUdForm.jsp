@@ -89,6 +89,9 @@ input{
 #trAAA{
 	text-align:center;
 }
+#tdA1{
+	width:100px;
+}
 </style>
 <meta charset="UTF-8">
 <title>Insert title here</title>
@@ -178,7 +181,7 @@ input{
             <li class="nav-item">
                 <a class="nav-link" href="#">
                     <i class="fas fa-fw fa-chart-area"></i>
-                    <span>판매 상품</span></a>
+                    <span>상품 관리</span></a>
             </li>
 
             <!-- Nav Item - Tables -->
@@ -228,7 +231,7 @@ input{
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr id="trA">
-                                            <th id="thB">ID</th>
+                                            <th id="thB">ID<span class="necessary">( 변경불가 ! )</span></th>
                                             <th id="thB">PASSWORD</th>
                                             <th>NAME</th>
                                             <th>E-MAIL</th>
@@ -240,11 +243,11 @@ input{
                                     </tfoot>
                                     <tbody>
                                         <tr id="trAAA">
-                                            <td>${rvo.memberId }<br><span class="necessary"> 변경불가 ! </span></td>
-                                            <td><input style="width:150px" type="text" value="${rvo.memberPwd }" id="rvoPwd" name="rvoPwd"></td>
-                                            <td><input style="width:80px" type="text" value="${rvo.memberName }" id="rvoName" name="rvoName"></td>
-                                            <td><input style="width:170px" type="text" value="${rvo.memberEmail }" id="rvoEmail" name="rvoEmail"></td>
-                                            <td><input style="width:150px" type="text" value="${rvo.memberTel }" id="rvoTel" name="rvoTel"></td>
+                                            <td id="tdA1">${rvo.memberId }</td>
+                                            <td><input style="width:200px" type="text" value="${rvo.memberPwd }" id="rvoPwd" name="rvoPwd"></td>
+                                            <td><input style="width:100px" type="text" value="${rvo.memberName }" id="rvoName" name="rvoName"></td>
+                                            <td><input style="width:230px" type="text" value="${rvo.memberEmail }" id="rvoEmail" name="rvoEmail"></td>
+                                            <td><input style="width:200px" type="text" value="${rvo.memberTel }" id="rvoTel" name="rvoTel"></td>
                                             <td id="tdB"><a class="myButton2" onclick="AdminMemberUpdate2('${rvo.memberId}')">수정</a></td>
                                         </tr>
  

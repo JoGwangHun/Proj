@@ -145,9 +145,19 @@
 			max-width: 875px;
 		}
 	</style>
-
+<style>
+ .headDiv1{
+		width:1920px;
+		height:50px;
+		
+	}
+</style>
 </head>
 
+
+<div class="headDiv1">
+
+</div>
 <body id="page-top">
 	<form id="updateFrm" action="thingUpdate.do" method="post">
 		<input type="hidden" name="chId" value="${vo.thingId }" />

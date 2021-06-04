@@ -8,9 +8,12 @@
         <title>회원가입 </title>
         <meta charset="utf-8">
         <style> 
-            body{background-color: #F5F6F7;}
-            div.divClass{margin-top: 60px;margin-left: 38%;}
-            ul,li{ list-style: none;}
+            .JoinBody{background-color: #F5F6F7;
+          /*  margin-top:-30px; */
+            }
+            div.divClass{margin-left: 38%;}
+            ul,li{ 
+            list-style: none;}
            li{margin-bottom: 20px; text-align: left;}
             .box{width: 450px; height: 50px; border: 1px solid #666; padding: 10px;}
             .pbox{width: 160px; height: 50px; border: 1px solid #666; padding: 10px;}
@@ -18,8 +21,12 @@
             .necessary{font-size: small; color:red;}
             .JoinButton{background:gray; color:white; width: 450px; border: 1px solid #666; height:50px; font-size: x-large; }
 			.CheckButton{background:gray; color:white; width: 140x; border: 1px solid #666; height:50px; font-style: italic; font-weight:bold;}
-        
+      /* .blankA{
+        	width:100%;
+        	height:300px;
+        }*/
         </style>
+        
   <script>
   function formCheck(){
 		if(!frm.id.value){
@@ -99,7 +106,9 @@
         
 
     </head>
-    <body>
+    <body class="JoinBody">
+    <div class="blankA">
+    </div>
         <div class="divClass">
         	<form id="frm" name="frm" action="memberJoin.do" method="post" >
             <ul>

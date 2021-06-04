@@ -27,6 +27,18 @@
 		height: 300px;
 	}
 </style>
+<style>
+ .headDiv1{
+		width:1920px;
+		height:50px;
+		
+	}
+
+</style>
+
+<div class="headDiv1">
+
+</div>
 
 <!-- <div class="col-md-6">
 		<div
@@ -50,6 +62,7 @@
 			</div>
 		</div>
 	</div> -->
+	<div class="allBody">
 <div class="row mb-2">
 	<c:forEach items="${list }" var="list">
 		<div class="col-md-6">
@@ -81,6 +94,7 @@
 </div>
 <div style="text-align: right;">
 	<button class="btn btn-outline-dark" type="button" onclick="location.href='thingForm.do'">등록</button>
+</div>
 </div>
 <script>
 	function addCnt(thing_id) {
