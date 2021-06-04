@@ -6,175 +6,243 @@
 <html lang="ko">
 
 <head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<meta name="description" content="">
-	<meta name="author" content="">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="">
+<meta name="author" content="">
 
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-	<script type="text/javascript">
-		//차트 시작
-		google.charts.load('current', {
-			'packages': ['line']
-		});
-		google.charts.setOnLoadCallback(drawChart);
+<script type="text/javascript">
+	//차트 시작
+	google.charts.load('current', {
+		'packages' : [ 'line' ]
+	});
+	google.charts.setOnLoadCallback(drawChart);
 
-		function drawChart() {
+	function drawChart() {
 
-			var data = new google.visualization.DataTable();
-			data.addColumn('string', 'Day');
-			data.addColumn('number', 'Price');
+		var data = new google.visualization.DataTable();
+		data.addColumn('string', 'Day');
+		data.addColumn('number', 'Price');
 
-			let price1 = $("#price1").val();
-			let price2 = $("#price2").val();
-			let price3 = $("#price3").val();
-			let price4 = $("#price4").val();
+		let price1 = $("#price1").val().replace(/,/g,"");
+		let price2 = $("#price2").val().replace(/,/g,"");
+		let price3 = $("#price3").val().replace(/,/g,"");
+		let price4 = $("#price4").val().replace(/,/g,"");
 
-			price1 = parseInt(price1);
-			price2 = parseInt(price2);
-			price3 = parseInt(price3);
-			price4 = parseInt(price4);
+		price1 = parseInt(price1);
+		price2 = parseInt(price2);
+		price3 = parseInt(price3);
+		price4 = parseInt(price4);
 
-			data.addRows([
-				['05.04', price1, ],
-				['05.11', price2, ],
-				['05.18', price3, ],
-				['05.25', price4, ],
-			]);
+		data.addRows([ [ '05.04', price1, ], [ '05.11', price2, ],
+				[ '05.18', price3, ], [ '05.25', price4, ], ]);
 
-			var options = {
-				width: 400,
-				height: 70,
-				axes: {
-					x: {
-						0: {
-							side: 'bottom'
-						}
+		var options = {
+			width : 400,
+			height : 70,
+			axes : {
+				x : {
+					0 : { 
+						side : 'bottom'
 					}
 				}
-			};
+			}
+		};
 
-			var chart = new google.charts.Line(document
+		var chart = new google.charts.Line(document
 				.getElementById('line_top_x'));
 
-			chart.draw(data, google.charts.Line.convertOptions(options));
+		chart.draw(data, google.charts.Line.convertOptions(options));
+	}
+	// 차트 끝 
+
+	// 수정, 삭제 버튼 함수 시작
+	function btnFnc(str) {
+		let title = $("#title").val();
+		let price = $("#price").val().replace(/,/g,"");
+		let desc = $("#desc").val();
+		let dayPrice1 = $("#dayPrice1").val().replace(/,/g,"");
+		let dayPrice2 = $("#dayPrice2").val().replace(/,/g,"");
+		let dayPrice3 = $("#dayPrice3").val().replace(/,/g,"");
+		let dayPrice4 = $("#dayPrice4").val().replace(/,/g,"");
+		let kind = $("#kind").val();
+
+		var form = $('#picture')[0];
+		var formData = new FormData(form);
+		formData.append("fileObj", $("#thingImage")[0].files[0]);
+		formData.append("fileObj2", $("#detailImage")[0].files[0]);
+
+		let thingImage = $("#preview-image").attr("src").substring(7);
+		let detailImage = $("#preview-image2").attr("src").substring(7);
+
+		if (typeof $("#thingImage").get(0).files[0] != "undefined") {
+			thingImage = $("#thingImage").get(0).files[0].name;
 		}
-		// 차트 끝 
-
-		// 수정, 삭제 버튼 함수 시작
-		function btnFnc(str) {
-			let title = $("#title").val();
-			let price = $("#price").val();
-			let desc = $("#desc").val();
-			let dayPrice1 = $("#dayPrice1").val();
-			let dayPrice2 = $("#dayPrice2").val();
-			let dayPrice3 = $("#dayPrice3").val();
-			let dayPrice4 = $("#dayPrice4").val();
-			let kind = $("#kind").val();
-
-			var form = $('#picture')[0];
-			var formData = new FormData(form);
-			formData.append("fileObj", $("#thingImage")[0].files[0]);
-			formData.append("fileObj2", $("#detailImage")[0].files[0]);
-			formData.append("fileObj3", $("#detailDesc")[0].files[0]);
-
-			let thingImage = $("#preview-image").attr("src").substring(7);
-			let detailImage = $("#preview-image2").attr("src").substring(7);
-			let detailDesc = $("#preview-image3").attr("src").substring(7);
-
-			if (typeof $("#thingImage").get(0).files[0] != "undefined") {
-				thingImage = $("#thingImage").get(0).files[0].name;
-			}
-			if (typeof $("#detailImage").get(0).files[0] != "undefined") {
-				detailImage = $("#detailImage").get(0).files[0].name;
-			}
-			if (typeof $("#detailDesc").get(0).files[0] != "undefined") {
-				detailDesc = $("#detailDesc").get(0).files[0].name;
-			}
-
-			if (str == "del") {
-				delFrm.submit();
-				return false;
-			}
-
-			if (str == "update") {
-				$.ajax({
-					url: '/proj/fileUpload',
-					processData: false,
-					contentType: false,
-					data: formData,
-					type: 'POST',
-					success: function (result) {
-						alert("업로드 성공!!");
-					},
-					error: function (error) {
-						console.log(err)
-					}
-
-				});
-
-				updateFrm.chTitle.value = title;
-				updateFrm.chPrice.value = price;
-				updateFrm.chDesc.value = desc;
-				updateFrm.chDayPrice1.value = dayPrice1;
-				updateFrm.chDayPrice2.value = dayPrice2;
-				updateFrm.chDayPrice3.value = dayPrice3;
-				updateFrm.chDayPrice4.value = dayPrice4;
-				updateFrm.chImage.value = thingImage;
-				updateFrm.chDetailImage.value = detailImage;
-				updateFrm.chDetailDesc.value = detailDesc;
-				updateFrm.chKind.value = kind;
-
-				updateFrm.submit();
-				return false;
-			}
+		if (typeof $("#detailImage").get(0).files[0] != "undefined") {
+			detailImage = $("#detailImage").get(0).files[0].name;
 		}
-		// 수정, 삭제 버튼 함수 끝
-		
-		// 네이버api 불러오는곳
-		$.ajax({
-			url: "${pageContext.request.contextPath}/naverSearch",
-			/* data: {}, */
-			dataType: "json",
-			success: function(result) {
-				console.log(result);
-				console.log(result.items[0].image);
-				function viewCompare() {
-					let content;
-					
-					for(let i = 1; i <= 4; i++) {
-						content += "<td>"
-						content += "<a href=" + result.items[i].link + ">";
-						content += "<img class='compare_img' src=" + result.items[i].image + "/>";
-						content += "</a>";
-						content += "</td>";
-					}
-					content += "</tr>";					
-					content += "<tr>";
-					for(let i = 1; i <= 4; i++) {
-						content += "<td>";
-						
-					}
+
+		if (str == "del") {
+			delFrm.submit();
+			return false;
+		}
+
+		if (str == "update") {
+			$.ajax({
+				url : '/proj/fileUpload',
+				processData : false,
+				contentType : false,
+				data : formData,
+				type : 'POST',
+				success : function(result) {
+					alert("수정 성공");
+				},
+				error : function(error) {
+					console.log(err)
+					alert("수정 실패")
 				}
-			},
-			error: function(err) {
-				console.log(err);
-			}
-		});
-	</script>
 
-	<title>상품선택</title>
-	<style>
-		li {
-			float: left;
-		}
+			});
 
-		img {
-			max-width: 875px;
+			updateFrm.chTitle.value = title;
+			updateFrm.chPrice.value = price;
+			updateFrm.chDesc.value = desc;
+			updateFrm.chDayPrice1.value = dayPrice1;
+			updateFrm.chDayPrice2.value = dayPrice2;
+			updateFrm.chDayPrice3.value = dayPrice3;
+			updateFrm.chDayPrice4.value = dayPrice4;
+			updateFrm.chImage.value = thingImage;
+			updateFrm.chDetailImage.value = detailImage;
+			updateFrm.chKind.value = kind;
+
+			updateFrm.submit();
+			return false;
 		}
-	</style>
+	}
+	// 수정, 삭제 버튼 함수 끝
+
+	// 네이버api 불러오는곳
+	function loadSearchAPI(name) {
+		$.ajax({
+					url : "${pageContext.request.contextPath}/naverSearch",
+					data : {
+						search : name
+					},
+					dataType : "json",
+					success : function(result) {
+						console.log(result);
+						console.log(result.items[0].image);
+						let content;
+
+						content += "<tr>"
+						for (let i = 1; i <= 4; i++) {
+							content += "<td>"
+							content += "<a href='" + result.items[i].link + "' target='_blank'>";
+							content += "<img class='compare_img' src=" + result.items[i].image + "/>";
+							content += "</a></td>";
+						}
+						content += "</tr><tr>";
+						for (let i = 1; i <= 4; i++) {
+							content += "<th>" + result.items[i].title.replace(/<b>/gi, "") + "</th>";
+						}
+						content += "<tr/><tr>"
+						for (let i = 1; i <= 4; i++) {
+							content += "<th>" + addComma(result.items[i].lprice) + "원</th>";
+						}
+						content += "<tr/><tr>"
+						for (let i = 1; i <= 4; i++) {
+							content += "<th>" + result.items[i].mallName + "</th>";
+						}
+						content += "</tr>"
+
+						$("#compareTbl").append(content);
+					},
+					error : function(err) {
+						console.log(err);
+					}
+				});
+		 function addComma(value){
+		        value = value.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+		        return value; 
+		}
+	}
+	// 네이버API 끝
+	
+	// 댓글 함수
+	function warnEmpty() {
+		alert("글을 입력하세요!");
+	}
+	function dateToString(date) {
+		const dateString = date.toISOString();
+		const dateToString = dateString.substring(0, 10) + " " + dateString.substring(11, 19);
+		return dateToString;
+	}
+	function submitComment() {
+		const newcommentEL = document.getElementById("new-comment");
+		const newcomment = newcommentEL.value.trim();
+
+		if (newcomment) {
+			const dateEL = document.createElement("div");
+			dateEL.classList.add("comment-date");
+			const dateString = dateToString(new Date());
+			dateEL.innerText = dateString;
+
+			const contentEL = document.createElement("div");
+			contentEL.classList.add("comment-content");
+			contentEL.innerText = newcomment;
+
+			const commentEL = document.createElement("div");
+			commentEL.classList.add("comment-row");
+			commentEL.appendChild(dateEL);
+			commentEL.appendChild(contentEL);
+
+			document.getElementById("comments").appendChild(commentEL);
+			newcommentEL.value = "";
+
+			const countEL = document.getElementById("comments-count");
+			const count = countEL.innerText;
+			countEL.innerText = parseInt(count) + 1;
+		} else
+			warnEmpty();
+	}
+	// 댓글함수 끝
+	
+	// 댓글 db Insert
+	function commentInsert(user_id, thing_id) {
+		const commentEL = document.getElementById("new_comment");
+		const comments = commentEL.value.trim();
+		
+		if (comments) {
+			$.ajax({
+				url: "${pageContext.request.contextPath}/commentInsert.do",
+				type: "post",
+				data: {
+					user_id: user_id,
+					comment: comments,
+					thing_id: thing_id,
+				},
+				success: function(result) {
+					picture.new_comment.value = "";	
+				},
+				error: function(err) {
+					console.log(err);
+				}
+			});
+		} else warnEmpty();
+	}
+</script>
+
+<title>상품선택</title>
+<style>
+li {
+	float: left;
+}
+
+img {
+	max-width: 875px;
+}
+</style>
 
 </head>
 
@@ -210,14 +278,15 @@
 				<div class="container-fluid">
 
 					<!-- Page Heading -->
-					<div class="d-sm-flex align-items-center justify-content-between mb-4">
+					<div
+						class="d-sm-flex align-items-center justify-content-between mb-4">
 						<c:if test="${id ne vo.userId }">
-							<h1 class="h3 mb-0 text-gray-800">${vo.thingName }</h1>
-							<h1 class="h3 mb-0 text-gray-800">종류: ${vo.thingKind }</h1>
+							<h1 class="h3 mb-0 text-gray-800 little-mar">${vo.thingName }</h1><br />
+							<h1 class="h3 mb-0 text-gray-800 text-uppercase little-mar">카테고리: ${vo.thingKind }</h1>
 						</c:if>
 						<c:if test="${id eq vo.userId }">
-							<input type="text" id="title" name="title" value="${vo.thingName }" size="60" />
-							<input type="text" id="kind" name="kind" value="${vo.thingKind }" size="10" />
+							<input class="little-mar" type="text" id="title" name="title" value="${vo.thingName }" size="70" /><br /> 
+							<input class="little-mar" type="text" id="kind" name="kind" value="${vo.thingKind }" size="10" />
 						</c:if>
 					</div>
 
@@ -230,7 +299,8 @@
 								<div class="card-body">
 									<div class="row no-gutters align-items-center">
 										<div class="col mr-2">
-											<div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+											<div
+												class="text-xs font-weight-bold text-primary text-uppercase mb-1">
 												가격</div>
 											<div class="h5 mb-0 font-weight-bold text-gray-800">
 												<c:if test="${id ne vo.userId }">
@@ -238,8 +308,8 @@
 													</fmt:formatNumber>
 												</c:if>
 												<c:if test="${id eq vo.userId }">
-													<input type="text" id="price" name="price" value="${vo.thingPrice }"
-														size="10" />
+													<input type="text" id="price" name="price"
+														value="${vo.thingPrice }" size="10" />
 												</c:if>
 											</div>
 										</div>
@@ -254,17 +324,17 @@
 								<div class="card-body">
 									<div class="row no-gutters align-items-center">
 										<div class="col mr-2">
-											<div class="text-xs font-weight-bold text-info text-uppercase mb-1">간략 스펙
-											</div>
+											<div
+												class="text-xs font-weight-bold text-info text-uppercase mb-1">간략
+												스펙</div>
 											<div class="row no-gutters align-items-center">
 												<div class="col-auto">
 													<c:if test="${id ne vo.userId }">
 														<div class="h5 mb-0 mr-3 font-weight-bold text-gray-800"
-															style="font-size: 10pt">${vo.thingDesc }</div>
+															style="font-size: 11pt">${vo.thingDesc }</div>
 													</c:if>
 													<c:if test="${id eq vo.userId }">
-														<textarea name="desc" id="desc" cols="90"
-															rows="2">${vo.thingDesc }</textarea>
+														<textarea name="desc" id="desc" cols="90" rows="2">${vo.thingDesc }</textarea>
 													</c:if>
 												</div>
 											</div>
@@ -280,7 +350,8 @@
 								<div class="card-body">
 									<div class="row no-gutters align-items-center">
 										<div class="col mr-2">
-											<div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+											<div
+												class="text-xs font-weight-bold text-warning text-uppercase mb-1">
 												1개월 가격변화</div>
 											<c:if test="${id ne vo.userId }">
 												<div id="line_top_x">
@@ -291,11 +362,15 @@
 												</div>
 											</c:if>
 											<c:if test="${id eq vo.userId }">
-												1.<input id="dayPrice1" type="text" value="${vo.price1 }" size="17" />
-												2.<input id="dayPrice2" type="text" value="${vo.price2 }" size="17" />
+												1.<input id="dayPrice1" type="text" value="${vo.price1 }"
+													size="17" />
+												2.<input id="dayPrice2" type="text" value="${vo.price2 }"
+													size="17" />
 												<br />
-												3.<input id="dayPrice3" type="text" value="${vo.price3 }" size="17" />
-												4.<input id="dayPrice4" type="text" value="${vo.price4 }" size="17" />
+												3.<input id="dayPrice3" type="text" value="${vo.price3 }"
+													size="17" />
+												4.<input id="dayPrice4" type="text" value="${vo.price4 }"
+													size="17" />
 											</c:if>
 										</div>
 									</div>
@@ -309,7 +384,8 @@
 						<div class="row">
 							<!-- Pie Chart -->
 							<div class="col-xl-4 col-lg-5">
-								<div class="card shadow mb-4" style="width: 600px; height: 415px;">
+								<div class="card shadow mb-4"
+									style="width: 600px; height: 415px;">
 									<!-- Card Header - Dropdown -->
 									<div
 										class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
@@ -319,14 +395,15 @@
 									<div class="card-body">
 										<div class="pb-2">
 											<c:if test="${id ne vo.userId }">
-												<img src="upload/${vo.thingImage }" width="380px" height="350px"
-													style="margin: -0.8em 0 3em 4em;" />
+												<img src="upload/${vo.thingImage }" width="380px"
+													height="350px" style="margin: -0.8em 0 3em 4em;" />
 											</c:if>
 											<c:if test="${id eq vo.userId }">
-												<img src="upload/${vo.thingImage }" width="250px" height="220px"
-													style="margin: -0.8em 0 3em 4em;" id="preview-image" />
-												<input type="file" accept="image/*" onchange="loadImg(this);"
-													id="thingImage" name="thingImage" />
+												<img src="upload/${vo.thingImage }" width="250px"
+													height="220px" style="margin: -0.8em 0 3em 4em;"
+													id="preview-image" />
+												<input type="file" accept="image/*"
+													onchange="loadImg(this);" id="thingImage" name="thingImage" />
 											</c:if>
 										</div>
 									</div>
@@ -335,35 +412,20 @@
 
 							<!-- Area Chart -->
 							<div class="col-xl-8 col-lg-7">
-								<div class="card shadow mb-4" style="width: 1230px; height: 415px;">
+								<div class="card shadow mb-4"
+									style="width: 1230px; height: 415px;">
 									<!-- Card Header - Dropdown -->
 									<div
 										class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
 										<h6 class="m-0 font-weight-bold text-primary">가격비교</h6>
 									</div>
 									<!-- Card Body -->
-									<div class="card-body">
+									<div class="card-body" style="maring: 0 auto; padding: 0;">
 										<div class="chart-area">
-											
-											<table border="1">
-												<tr>
-													<c:forEach begin="1" end="4">
-														<td><a href="#"> <img class="compare_img"
-																id="first_image"
-																src="https://shopping-phinf.pstatic.net/main_2731432/27314328526.20210526105401.jpg">
-														</a></td>
-													</c:forEach>
-												</tr>
-												<tr>
-												<c:forEach begin="1" end="4">
-													<td>가격</td>
-												</c:forEach>
-												</tr>
-												<tr>
-												<c:forEach begin="1" end="4">
-													<td>가게이름</td>
-												</c:forEach>
-												</tr>
+											<script>
+												loadSearchAPI("${vo.thingName}");
+											</script>
+											<table id="compareTbl" style="text-align: center; font-size: 11pt">
 											</table>
 										</div>
 									</div>
@@ -385,8 +447,9 @@
 											<img src="upload/${vo.thingImageDetail }" />
 										</c:if>
 										<c:if test="${id eq vo.userId }">
-											<input type="file" accept="image/*" onchange="loadImg2(this);"
-												id="detailImage" name="detailImage" />
+											<input type="file" accept="image/*"
+												onchange="loadImg2(this);" id="detailImage"
+												name="detailImage" />
 											<img src="upload/${vo.thingImageDetail }" id="preview-image2" />
 										</c:if>
 									</div>
@@ -399,18 +462,20 @@
 								<!-- Project Card Example -->
 								<div class="card shadow mb-4">
 									<div class="card-header py-3">
-										<h6 class="m-0 font-weight-bold text-primary">상세스펙</h6>
+										<h6 class="m-0 font-weight-bold text-primary">상품의견</h6>
 									</div>
 									<div class="card-body">
-										<div class="prod_spec">
-											<c:if test="${id ne vo.userId }">
-												<img src="upload/${vo.thingDetailDesc }" />
-											</c:if>
-											<c:if test="${id eq vo.userId }">
-												<input type="file" accept="image/*" onchange="loadImg3(this);"
-													id="detailDesc" name="detailDesc" />
-												<img src="upload/${vo.thingDetailDesc }" id="preview-image3" />
-											</c:if>
+										<div id="comments">
+											<div id="comment-head" class="comment-row">
+												<span id="comments-count">0</span> Comment(s)
+											</div>
+											<div class="comment-row">
+												<div class="form-floating">	
+													<textarea class="form-control" id="new_comment" name="new_comment" placeholder="Leave a comment here" id="floatingTextarea"></textarea>	
+													<label for="floatingTextarea">Comments</label>
+													<button class="btn btn-dark commentBtn" type="button" onclick="commentInsert('${id}', '${vo.thingId }')">등록</button>
+												</div>
+											</div>
 										</div>
 									</div>
 								</div>
@@ -421,53 +486,32 @@
 										<button class="btn btn-outline-dark" type="button"
 											onclick="btnFnc('del')">삭제</button>
 									</c:if>
-									<button class="btn btn-outline-dark" type="button" onclick="location.href='thingListPaging.do'">목록</button>
+									<button class="btn btn-outline-dark" type="button"
+										onclick="location.href='thingListPaging.do'">목록</button>
 								</div>
 
 							</div>
-
-
 						</div>
 					</form>
-
 				</div>
 				<!-- /.container-fluid -->
-
 			</div>
 			<!-- End of Main Content -->
-
 		</div>
 		<!-- End of Content Wrapper -->
-
 	</div>
 	<!-- End of Page Wrapper -->
 
 	<!-- Scroll to Top Button-->
-	<a class="scroll-to-top rounded" href="#page-top"> <i class="fas fa-angle-up"></i>
+	<a class="scroll-to-top rounded" href="#page-top"> <i
+		class="fas fa-angle-up"></i>
 	</a>
-
-	<!-- Bootstrap core JavaScript-->
-	<script src="${pageContext.request.contextPath }/admin/vendor/jquery/jquery.min.js"></script>
-	<script src="${pageContext.request.contextPath }/admin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-	<!-- Core plugin JavaScript-->
-	<script src="${pageContext.request.contextPath }/admin/vendor/jquery-easing/jquery.easing.min.js"></script>
-
-	<!-- Custom scripts for all pages-->
-	<script src="${pageContext.request.contextPath }/admin/js/sb-admin-2.min.js"></script>
-
-	<!-- Page level plugins -->
-	<script src="${pageContext.request.contextPath }/admin/vendor/chart.js/Chart.min.js"></script>
-
-	<!-- Page level custom scripts -->
-	<script src="${pageContext.request.contextPath }/admin/js/demo/chart-area-demo.js"></script>
-	<script src="${pageContext.request.contextPath }/admin/js/demo/chart-pie-demo.js"></script>
 
 	<script>
 		function loadImg(value) {
 			if (value.files && value.files[0]) {
 				var reader = new FileReader();
-				reader.onload = function (e) {
+				reader.onload = function(e) {
 					$("#preview-image").attr("src", e.target.result);
 				}
 				reader.readAsDataURL(value.files[0]);
@@ -477,24 +521,13 @@
 		function loadImg2(value) {
 			if (value.files && value.files[0]) {
 				var reader = new FileReader();
-				reader.onload = function (e) {
+				reader.onload = function(e) {
 					$("#preview-image2").attr("src", e.target.result);
 				}
 				reader.readAsDataURL(value.files[0]);
 			}
 		}
-
-		function loadImg3(value) {
-			if (value.files && value.files[0]) {
-				var reader = new FileReader();
-				reader.onload = function (e) {
-					$("#preview-image3").attr("src", e.target.result);
-				}
-				reader.readAsDataURL(value.files[0]);
-			}
-		}
 	</script>
-
 </body>
 
 </html>

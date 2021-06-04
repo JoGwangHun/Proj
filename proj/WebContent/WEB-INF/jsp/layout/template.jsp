@@ -10,7 +10,6 @@
 
 <!-- ADMIN SCRIPT  -->
     <script src="${pageContext.request.contextPath }/admin/vendor/jquery/jquery.min.js"></script>
-    <script src="${pageContext.request.contextPath }/admin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <!-- Core plugin JavaScript-->
     <script src="${pageContext.request.contextPath }/admin/vendor/jquery-easing/jquery.easing.min.js"></script>
@@ -24,28 +23,26 @@
 
     <!-- Page level custom scripts -->
     <script src="${pageContext.request.contextPath }/admin/js/demo/datatables-demo.js"></script>
-
+	<script src="${pageContext.request.contextPath }/admin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<script src="${pageContext.request.contextPath }/admin/vendor/bootstrap/js/bootstrap.bundle.js"></script>
+	<script src="${pageContext.request.contextPath }/admin/vendor/jquery-easing/jquery.easing.min.js"></script>
+	<script	src="${pageContext.request.contextPath }/admin/vendor/chart.js/Chart.min.js"></script>
+	<script	src="${pageContext.request.contextPath }/admin/js/demo/chart-area-demo.js"></script>
+	<script	src="${pageContext.request.contextPath }/admin/js/demo/chart-pie-demo.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <link href="${pageContext.request.contextPath }/admin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-        <link href="${pageContext.request.contextPath }/admin/css/sb-admin-2.min.css" rel="stylesheet">
 <!-- END ADMIN SCRIPT  -->
-
-<link rel="stylesheet" href="${pageContext.request.contextPath }/Login/screen.css"  media="screen" title="no title" >
-   <link ${pageContext.request.contextPath }/product/dist/css/bootstrap.min.css">
-<link rel="canonical"
-	href="https://getbootstrap.com/docs/5.0/examples/product/">
+	<link rel="stylesheet" href="${pageContext.request.contextPath }/Login/screen.css"  media="screen" title="no title" >
+	<link rel="stylesheet" href="${pageContext.request.contextPath }/product/dist/css/bootstrap.min.css">
+	<link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/product/">
 <!-- Bootstrap core CSS -->
-<link
-	href="${pageContext.request.contextPath }/Login/Login.css"
-	rel="stylesheet">
-<link href="${pageContext.request.contextPath }/product/product.css"
-	rel="stylesheet">
+	<link href="${pageContext.request.contextPath }/Login/Login.css" rel="stylesheet">
+	<link href="${pageContext.request.contextPath }/product/product.css" rel="stylesheet">
 <!-- Custom fonts for this template-->
-<link href="${pageContext.request.contextPath }/admin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet"
-	type="text/css">
-<link
-	href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-	rel="stylesheet">
-<link href="${pageContext.request.contextPath }/admin/css/sb-admin-2.min.css" rel="stylesheet">
+	<link href="${pageContext.request.contextPath }/admin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet"	type="text/css">
+	<link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+	<link href="${pageContext.request.contextPath }/admin/css/sb-admin-2.min.css" rel="stylesheet">
 <style>
 .bd-placeholder-img {
 	font-size: 1.125rem;
@@ -61,13 +58,21 @@
 		font-size: 3.5rem;
 	}
 .compare_img {
-	width: 300px;
-	height: 250;
-	padding: 1em 1em 0 2em;
+	width: 270px;
+	height: 260px;
+	padding-left: 1.5em
+}
+.little-mar {
+	margin-top: 1em;
+}
+.commentBtn {
+	font-size: 9pt;
+	width: 50px;
+	height: 30px;
+	margin-bottom: 2em;
 }
 
 </style>
-
 </head>
 <body>
 	<tiles:insertAttribute name="menu">

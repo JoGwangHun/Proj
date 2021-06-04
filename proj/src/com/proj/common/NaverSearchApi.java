@@ -24,12 +24,14 @@ public class NaverSearchApi extends HttpServlet {
 		resp.setContentType("text/html;charset=UTF-8");
 		resp.setCharacterEncoding("UTF-8");
 		
+		String search = req.getParameter("search");
+		
 		String clientId = "Tdz1EWnUD0rsFaedkmE0"; // 애플리케이션 클라이언트 아이디값"
 		String clientSecret = "3RXTWAuSIw"; // 애플리케이션 클라이언트 시크릿값"
 
 		String text = null;
 		try {
-			text = URLEncoder.encode("MSI 지포스 RTX 3090 슈프림 X D6X 24GB 트라이프로져2S", "UTF-8");
+			text = URLEncoder.encode(search, "UTF-8");
 		} catch (UnsupportedEncodingException e) {
 			throw new RuntimeException("검색어 인코딩 실패", e);
 		}
@@ -43,8 +45,6 @@ public class NaverSearchApi extends HttpServlet {
 		requestHeaders.put("X-Naver-Client-Secret", clientSecret);
 		String responseBody = get(apiURL, requestHeaders);
 
-		System.out.println(responseBody);
-		
 		resp.getWriter().print(responseBody);
 	}
 
