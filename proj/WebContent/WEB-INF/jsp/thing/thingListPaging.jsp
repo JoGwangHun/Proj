@@ -27,19 +27,28 @@ img {
 .p-4 {
 	height: 300px;
 }
+.pagination {
+	display: inline-block;
+}
+.pagination a {
+	color: black;
+	float: left;
+	padding: 8px 16px;
+	text-decoration: none;
+	transition: background-color .3s;
+}
+
+.pagination a.active {
+	background-color: #F44336;
+	color: white;
+	border-radius: 5px;
+}
+
+.pagination a:hover:not(.active) {
+	background-color: #ddd;
+	border-radius: 5px;
+}
 </style>
-<style>
- .headDiv1{
-		width:1920px;
-		height:50px;
-		
-	}
-
-</style>
-
-<div class="headDiv1">
-
-</div>
 
 <!-- <div class="col-md-6">
 		<div
@@ -63,7 +72,6 @@ img {
 			</div>
 		</div>
 	</div> -->
-	<div class="allBody">
 <div class="row mb-2">
 	<c:forEach items="${list }" var="list">
 		<div class="col-md-6">
@@ -99,6 +107,16 @@ img {
 	<button class="btn btn-outline-dark" type="button"
 		onclick="location.href='thingForm.do'">등록</button>
 </div>
+<div style="text-align: center;">
+<jsp:include page="../common/paging.jsp" flush="true">
+	<jsp:param name="firstPageNo" value="${paging.firstPageNo}" />
+	<jsp:param name="prevPageNo" value="${paging.prevPageNo}" />
+	<jsp:param name="startPageNo" value="${paging.startPageNo}" />
+	<jsp:param name="pageNo" value="${paging.pageNo}" />
+	<jsp:param name="endPageNo" value="${paging.endPageNo}" />
+	<jsp:param name="nextPageNo" value="${paging.nextPageNo}" />
+	<jsp:param name="finalPageNo" value="${paging.finalPageNo}" />
+</jsp:include>
 </div>
 <script>
 	function addCnt(thing_id) {
@@ -109,11 +127,14 @@ img {
 				thing_id : thing_id,
 			},
 			success : function() {
-				location.href = "thingList.do";
+				location.href = "thingListPaging.do";
 			},
 			error : function(err) {
 				console.log(err);
 			}
 		});
+	}
+	function goPage(page) {
+		location.href = "thingListPaging.do?page=" + page;
 	}
 </script>

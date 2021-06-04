@@ -6,6 +6,7 @@ import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.proj.common.DbCommand;
 import com.proj.thing.serviceImpl.ThingServiceImpl;
@@ -16,7 +17,8 @@ public class CartList implements DbCommand {
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String user_id = request.getParameter("user_id");
+		HttpSession session = request.getSession();
+		String user_id = (String) session.getAttribute("id");
 		
 		ThingServiceImpl service = new ThingServiceImpl();
 		
@@ -27,6 +29,9 @@ public class CartList implements DbCommand {
 		
 		request.setAttribute("total", total);
 		request.setAttribute("list", list);
+		
+		service = new ThingServiceImpl();
+		session.setAttribute("cartCnt", service.getCountCart(user_id));
 
 		return "/cart/checkOut.tiles";
 	}

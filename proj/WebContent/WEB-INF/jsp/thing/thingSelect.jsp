@@ -6,7 +6,6 @@
 <html lang="ko">
 
 <head>
-
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -133,6 +132,37 @@
 			}
 		}
 		// 수정, 삭제 버튼 함수 끝
+		
+		// 네이버api 불러오는곳
+		$.ajax({
+			url: "${pageContext.request.contextPath}/naverSearch",
+			/* data: {}, */
+			dataType: "json",
+			success: function(result) {
+				console.log(result);
+				console.log(result.items[0].image);
+				function viewCompare() {
+					let content;
+					
+					for(let i = 1; i <= 4; i++) {
+						content += "<td>"
+						content += "<a href=" + result.items[i].link + ">";
+						content += "<img class='compare_img' src=" + result.items[i].image + "/>";
+						content += "</a>";
+						content += "</td>";
+					}
+					content += "</tr>";					
+					content += "<tr>";
+					for(let i = 1; i <= 4; i++) {
+						content += "<td>";
+						
+					}
+				}
+			},
+			error: function(err) {
+				console.log(err);
+			}
+		});
 	</script>
 
 	<title>상품선택</title>
@@ -319,11 +349,33 @@
 									<!-- Card Header - Dropdown -->
 									<div
 										class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-										<h6 class="m-0 font-weight-bold text-primary">뭘넣을지모름</h6>
+										<h6 class="m-0 font-weight-bold text-primary">가격비교</h6>
 									</div>
 									<!-- Card Body -->
 									<div class="card-body">
-										<div class="chart-area"></div>
+										<div class="chart-area">
+											
+											<table border="1">
+												<tr>
+													<c:forEach begin="1" end="4">
+														<td><a href="#"> <img class="compare_img"
+																id="first_image"
+																src="https://shopping-phinf.pstatic.net/main_2731432/27314328526.20210526105401.jpg">
+														</a></td>
+													</c:forEach>
+												</tr>
+												<tr>
+												<c:forEach begin="1" end="4">
+													<td>가격</td>
+												</c:forEach>
+												</tr>
+												<tr>
+												<c:forEach begin="1" end="4">
+													<td>가게이름</td>
+												</c:forEach>
+												</tr>
+											</table>
+										</div>
 									</div>
 								</div>
 							</div>
@@ -379,6 +431,7 @@
 										<button class="btn btn-outline-dark" type="button"
 											onclick="btnFnc('del')">삭제</button>
 									</c:if>
+									<button class="btn btn-outline-dark" type="button" onclick="location.href='thingListPaging.do'">목록</button>
 								</div>
 
 							</div>
