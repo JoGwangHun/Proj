@@ -26,7 +26,6 @@
 	text-decoration: none;
 }
 </style>
-<<<<<<< HEAD
 
 	<!--  <div class="menuClass">
 =======
@@ -64,8 +63,6 @@
 <<<<<<< HEAD
 =======
     			<!--  <a id="a1"  href="memberLogOut.do">LogOut</a>-->
->>>>>>> branch 'master' of https://github.com/Narin88/Proj.git
->>>>>>> branch 'master' of https://github.com/Narin88/Proj.git
     			<div class="animation start-home"></div>
     		</nav>
     	</c:when>
@@ -85,11 +82,8 @@
     		</nav>
  	   </c:otherwise>
     </c:choose>
-<<<<<<< HEAD
-=======
+
   </nav>
 </header>
->>>>>>> branch 'master' of https://github.com/Narin88/Proj.git
 
 </div>
--->
