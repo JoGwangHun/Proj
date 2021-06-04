@@ -26,6 +26,10 @@
 	text-decoration: none;
 }
 </style>
+<<<<<<< HEAD
+
+	<!--  <div class="menuClass">
+=======
 <header class="site-header sticky-top py-1">
   <nav class="container d-flex flex-column flex-md-row justify-content-between">
     <a class="py-2" href="#" aria-label="Product">
@@ -33,21 +37,51 @@
     </a>
     <a class="py-2 d-none d-md-inline-block" href="index.do">홈페이지</a>
     <a class="py-2 d-none d-md-inline-block" href="thingListPaging.do">상품리스트</a>
+<<<<<<< HEAD
     <a class="py-2 d-none d-md-inline-block" href="cartList.do">장바구니
     <span class="badge bg-light text-dark">${cartCnt }</span></a>
     
+=======
+    <a class="py-2 d-none d-md-inline-block" href="cartList.do">
+    	장바구니
+    	<span class="badge bg-light text-dark">${cartCnt }</span>
+    </a>
+>>>>>>> branch 'master' of https://github.com/Narin88/Proj.git
+>>>>>>> branch 'master' of https://github.com/Narin88/Proj.git
     <c:choose>
+<<<<<<< HEAD
+    	<c:when test="${id eq 'admin'}">
+    		
+=======
     	<c:when test="${!empty id || id eq 'admin'}">
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+    		<nav id="nav1">	
+    			<a id="a1" href="#">${id }님 </a>
+    			<a id="a1" href="#">회원 관리</a>
+    			<a id="a1" href="memberInfo.do">회원 정보</a>
+    			<a id="a1" href="memberLogOut.do">LogOut</a>
+=======
+>>>>>>> branch 'master' of https://github.com/Narin88/Proj.git
+>>>>>>> branch 'master' of https://github.com/Narin88/Proj.git
     		<nav id="nav3">	
     			<a id="a3" href="#">${id }님 </a>
-    			<a id="a3" href="adminMember.do">회원 관리</a>
-    			<a id="a3" href="#">판매 관리</a>
+    			<a id="a3" href="adminMember.do">관리 페이지</a>
+    			<a id="a3" href="serviceCenter.do">고객 센터</a>
     			<a id="a3"  href="memberLogOut.do">LogOut</a>
+<<<<<<< HEAD
+=======
     			<!--  <a id="a1"  href="memberLogOut.do">LogOut</a>-->
+<<<<<<< HEAD
+=======
+>>>>>>> branch 'master' of https://github.com/Narin88/Proj.git
+>>>>>>> branch 'master' of https://github.com/Narin88/Proj.git
+>>>>>>> branch 'master' of https://github.com/Narin88/Proj.git
     			<div class="animation start-home"></div>
     		</nav>
     	</c:when>
-    	<c:when test="${!empty id }">
+    	<c:when test="${!empty id}">
     	<nav id="nav1">	
     			<a id="a1" href="#">${id }님 </a>
     			<a id="a1" href="memberInfo.do">회원 정보</a>
@@ -63,7 +97,11 @@
     		</nav>
  	   </c:otherwise>
     </c:choose>
+<<<<<<< HEAD
+=======
   </nav>
 </header>
+>>>>>>> branch 'master' of https://github.com/Narin88/Proj.git
 
-
+</div>
+-->

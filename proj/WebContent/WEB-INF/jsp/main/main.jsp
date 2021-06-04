@@ -25,9 +25,30 @@
 	/*background: url(polina.jpg) no-repeat;*/
 	background-size: cover;
 }
+<<<<<<< HEAD
+.body1{
+	width:100%;
+}
+    </style>
+
+
+
+ </head>
+ 
+
+ 
+  <body class="body1"> 
+  <!--background 전체 -->
+<video width="320" height="240" autoplay class="preview" muted loop>
+<source src="mp4/background.mp4" type="video/mp4">
+</video>
+=======
 </style>
 </head>
+>>>>>>> branch 'master' of https://github.com/Narin88/Proj.git
 
+<<<<<<< HEAD
+=======
 
 
 <body class="body1">
@@ -47,5 +68,6 @@
 			<li><a id="aId" href="#" aria-hidden="true" class="icon-flickr">???</a></li>
 		</ul>
 	</section>
+>>>>>>> branch 'master' of https://github.com/Narin88/Proj.git
 </body>
 </html>

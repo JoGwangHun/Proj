@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8"%>
+<<<<<<< HEAD
+=======
 <!-- Footer -->
 
 <footer class="text-center text-lg-start bg-light text-muted" style="height: 70px;">
@@ -9,3 +11,4 @@ pageEncoding="UTF-8"%>
         >
     </div>
 </footer>
+>>>>>>> branch 'master' of https://github.com/Narin88/Proj.git

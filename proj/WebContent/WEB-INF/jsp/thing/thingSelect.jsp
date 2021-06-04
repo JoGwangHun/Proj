@@ -119,6 +119,7 @@
 			updateFrm.submit();
 			return false;
 		}
+<<<<<<< HEAD
 	}
 	// 수정, 삭제 버튼 함수 끝
 
@@ -244,8 +245,22 @@ img {
 }
 </style>
 
+=======
+	</style>
+<style>
+ .headDiv1{
+		width:1920px;
+		height:50px;
+		
+	}
+</style>
+>>>>>>> branch 'master' of https://github.com/Narin88/Proj.git
 </head>
 
+
+<div class="headDiv1">
+
+</div>
 <body id="page-top">
 	<form id="updateFrm" action="thingUpdate.do" method="post">
 		<input type="hidden" name="chId" value="${vo.thingId }" />
